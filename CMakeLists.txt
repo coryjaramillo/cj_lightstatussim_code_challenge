@@ -3,6 +3,10 @@ project(cj_lightsimstatus_code_chal)
 
 set(CMAKE_CXX_STANDARD 14)
 
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_definitions(-DDEBUG_BUILD)
+endif()
+
 add_executable(${PROJECT_NAME} main.cpp
         src/HomeLights.cpp
         includes/cj_lightsimstatus_code_chal/HomeLights.h)

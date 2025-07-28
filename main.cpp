@@ -8,7 +8,6 @@
 #include "json_fwd.hpp"
 #include "json.hpp"
 
-
 // REQUIREMENTS
 //    print out text based on the state of the lights
 //    printouts need to be in JSON format
@@ -38,7 +37,8 @@ int main() {
     int currentPort = 8080;
 
     HomeLights homeLights(currentHost, currentPort);
-//    homeLights.displayAllLights();
+    homeLights.captureLightData();
+    homeLights.displayAllLights();
 
 
 

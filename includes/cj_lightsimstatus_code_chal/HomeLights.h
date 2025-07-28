@@ -1,5 +1,5 @@
 //
-// Created by skyse on 7/19/2025.
+// Created by Cory Jaramillo on 7/19/2025.
 //
 
 #ifndef CJ_LIGHTSIMSTATUS_CODE_CHAL_HOMELIGHTS_H
@@ -11,6 +11,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <cmath>
 
 // Local Libraries
 
@@ -40,17 +41,19 @@ public:
 
 
 protected:
-    void extractLightIDs();
+    void extractLightStates();
 
 private:
     std::string myHost;
     int myPort;
-    nlohmann::json lightData;
-    std::vector<std::string> lightIDs;
+    nlohmann::ordered_json lightData;
 
     // API HTTP Connection
     httplib::Client client;
     httplib::Server server;
+
+    nlohmann::json queryLightsAPI(const std::string& query);
+    static int convertValueToFromPercentage(bool toFromPercentage, int value); //true:toPercentage;false:fromPercentage
 };
 
 
