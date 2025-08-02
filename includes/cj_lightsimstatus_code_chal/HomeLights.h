@@ -9,9 +9,10 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include <vector>
+//#include <vector>
 #include <sstream>
 #include <cmath>
+#include <queue>
 
 // Local Libraries
 
@@ -31,28 +32,38 @@ public:
     ~HomeLights() = default;
 
     // Getters
+    void captureLightData(bool checkForNewData = false);
+    nlohmann::ordered_json getLightStateChange();
 
     // Setters
 
+
     // Utility Methods
     bool isConnectionValid();
+    bool areAnyChangesInQueue();
     void displayAllLights();
-    void captureLightData();
 
 
 protected:
-    void extractLightStates();
+    void extractLightStates(bool checkForNewData);
 
 private:
     std::string myHost;
     int myPort;
-    nlohmann::ordered_json lightData;
+    std::vector<std::string> lightKeys;
+    nlohmann::ordered_json currentLightData;
+    nlohmann::ordered_json newLightData;
+    std::queue<nlohmann::ordered_json> changesToLightState;
+
 
     // API HTTP Connection
     httplib::Client client;
     httplib::Server server;
 
-    nlohmann::json queryLightsAPI(const std::string& query);
+    nlohmann::json queryLightsAPI(const std::string& query = "");
+    void inspectDataForChanges(bool checkForNewData = false);
+    void captureChangeToQueue(const std::string &changeId, const std::string &changeKey, const std::string &statusChange);
+    void captureChangeToQueue(const nlohmann::json &lightChange);
     static int convertValueToFromPercentage(bool toFromPercentage, int value); //true:toPercentage;false:fromPercentage
 };
 

@@ -1016,7 +1016,7 @@ private:
   // path params
   // Fragments are separated by path params
   std::vector<std::string> static_fragments_;
-  // Stores the names of the path parameters to be used as keys in the
+  // Stores the names of the path parameters to be used as lightKeys in the
   // Request::path_params map
   std::vector<std::string> param_names_;
 };
@@ -6229,13 +6229,13 @@ inline void cf_object_ptr_deleter(CFTypeRef obj) {
 }
 
 inline bool retrieve_certs_from_keychain(CFObjectPtr<CFArrayRef> &certs) {
-  CFStringRef keys[] = {kSecClass, kSecMatchLimit, kSecReturnRef};
+  CFStringRef lightKeys[] = {kSecClass, kSecMatchLimit, kSecReturnRef};
   CFTypeRef values[] = {kSecClassCertificate, kSecMatchLimitAll,
                         kCFBooleanTrue};
 
   CFObjectPtr<CFDictionaryRef> query(
-      CFDictionaryCreate(nullptr, reinterpret_cast<const void **>(keys), values,
-                         sizeof(keys) / sizeof(keys[0]),
+      CFDictionaryCreate(nullptr, reinterpret_cast<const void **>(lightKeys), values,
+                         sizeof(lightKeys) / sizeof(lightKeys[0]),
                          &kCFTypeDictionaryKeyCallBacks,
                          &kCFTypeDictionaryValueCallBacks),
       cf_object_ptr_deleter);

@@ -6,18 +6,23 @@
 
 
 HomeLights::HomeLights(const std::string &host, int port) : client(host, port){
+
 #ifdef DEBUG_BUILD
     std::cout << "In Function: HomeLights::HomeLights" << std::endl;
 #endif
 
+
     myHost = host;
     myPort = port;
+    lightKeys = {"id", "name", "room", "on", "brightness"};
 }
 
 bool HomeLights::isConnectionValid() {
+
 #ifdef DEBUG_BUILD
     std::cout << "In Function: HomeLights::isConnectionValid" << std::endl;
 #endif
+
 
     bool returnState = false;
     try {
@@ -34,76 +39,115 @@ bool HomeLights::isConnectionValid() {
 }
 
 void HomeLights::displayAllLights() {
+
 #ifdef DEBUG_BUILD
     std::cout << "In Function: HomeLights::displayAllLights" << std::endl;
 #endif
 
-    if (!lightData.empty()) {
-        std::cout << lightData.dump(4) << std::endl;
+    if (!currentLightData.empty()) {
+        std::cout << currentLightData.dump(4) << std::endl;
     }
     else {
         std::cout << "Light Data is not currently captured." << std::endl;
     }
 }
 
-void HomeLights::captureLightData() {
+
+void HomeLights::captureLightData(bool checkForNewData) {
+
 #ifdef DEBUG_BUILD
     std::cout << "In Function: HomeLights::captureLightData" << std::endl;
 #endif
 
+
     if (isConnectionValid()) {
-        lightData = queryLightsAPI("/lights");
-        extractLightStates();
+        if (checkForNewData) {
+
+#ifdef DEBUG_BUILD
+            std::cout << "Checking for New Data..." << std::endl;
+#endif
+
+            newLightData = queryLightsAPI();
+        }
+        else {
+
+#ifdef DEBUG_BUILD
+            std::cout << "Populating Current Data..." << std::endl;
+#endif
+
+            currentLightData = queryLightsAPI();
+        }
+        extractLightStates(checkForNewData);
+
+        if(checkForNewData) {
+
+#ifdef DEBUG_BUILD
+            std::cout << "Inspecting Data for changes..." << std::endl;
+#endif
+
+            inspectDataForChanges(checkForNewData);
+        }
     }
     else {
         std::cout << "Connection to " << myHost << ":" << myPort << " is invalid." << std::endl;
     }
 }
 
-void HomeLights::extractLightStates() {
+void HomeLights::extractLightStates(bool checkForNewData) {
+
 #ifdef DEBUG_BUILD
     std::cout << "In Function: HomeLights::extractLightStates" << std::endl;
 #endif
 
-    if (!lightData.empty()) {
-        std::string onKey = "on";
-        std::string brightnessKey = "brightness";
 
-        for (auto & currentLight : lightData) {
-            std::string id = currentLight["id"];
-            std::ostringstream builder;
-            builder << "/lights/" << id;
-            std::cout << "ON Key in Current Light? " << currentLight.contains(onKey) << std::endl;
-            std::cout << "Brightness Key in Current Light? " << currentLight.contains(brightnessKey) << std::endl;
+    nlohmann::ordered_json *targetContainer = checkForNewData ? &newLightData : &currentLightData;
 
-            nlohmann::json light = queryLightsAPI(builder.str());
+#ifdef DEBUG_BUILD
+    std::cout << "newLightData Container: " << newLightData << std::endl;
+    std::cout << "currentLightData Container: " << currentLightData << std::endl;
+    std::cout << "Target Container: " << *targetContainer << std::endl;
+#endif
+
+
+    if (!targetContainer->empty()) {
+        for (auto & currentLight : *targetContainer) {
+            std::string id = currentLight[lightKeys[0]];
+
+
+#ifdef DEBUG_BUILD
+            std::cout << "ON Key in Current Light? " << currentLight.contains(lightKeys[3]) << std::endl;
+            std::cout << "Brightness Key in Current Light? " << currentLight.contains(lightKeys[4]) << std::endl;
+#endif
+
+            nlohmann::json light = queryLightsAPI(id);
 
             if (!light.empty()) {
                 // Inspect for existence of "on" key
-                if (light.contains(onKey)) {
-                    currentLight[onKey] = light[onKey];
-//                    currentLight.emplace_back()
+                if (light.contains(lightKeys[3])) {
+                    currentLight[lightKeys[3]] = light[lightKeys[3]];
 
 #ifdef DEBUG_BUILD
-                    std::cout << "\nlight on state: " << light[onKey] << " | type: " << typeid(light[onKey]).name() << std::endl;
-                    std::cout << "currentLight on state: " << currentLight[onKey] << " | type: " << typeid(currentLight[onKey]).name() << std::endl;
+                    std::cout << "\nlight on state: " << light[lightKeys[3]] << " | type: " << typeid(light[lightKeys[3]]).name() << std::endl;
+                    std::cout << "currentLight on state: " << currentLight[lightKeys[3]] << " | type: " << typeid(currentLight[lightKeys[3]]).name() << std::endl;
 #endif
+
                 }
                 else {
-                    std::cerr << "Invalid Key: " << onKey << std::endl;
+                    std::cerr << "Invalid Key: " << lightKeys[3] << std::endl;
                 }
 
                 // Inspect for existence of "brightness" key
-                if (light.contains(brightnessKey)) {
-                    currentLight[brightnessKey] = convertValueToFromPercentage(true, light[brightnessKey]);
+                if (light.contains(lightKeys[4])) {
+                    currentLight[lightKeys[4]] = convertValueToFromPercentage(true, light[lightKeys[4]]);
 
 #ifdef DEBUG_BUILD
-                    std::cout << "\nbrightness: " << light[brightnessKey] << " | type: " << typeid(light[brightnessKey]).name() << std::endl;
-                    std::cout << "brightness converted: " << currentLight[brightnessKey] << std::endl;
+                    std::cout << "\nbrightness: " << light[lightKeys[4]] << " | type: " << typeid(light[lightKeys[4]]).name() << std::endl;
+                    std::cout << "brightness converted: " << currentLight[lightKeys[4]] << std::endl;
 #endif
+
                 }
                 else {
-                    std::cerr << "Invalid Key: " << brightnessKey << std::endl;
+                    std::cerr << "Invalid Key: " << lightKeys[4] << std::endl;
                 }
             }
             else {
@@ -117,29 +161,38 @@ void HomeLights::extractLightStates() {
 }
 
 nlohmann::json HomeLights::queryLightsAPI(const std::string& query) {
+
 #ifdef DEBUG_BUILD
     std::cout << "In Function: HomeLights::queryLightsAPI" << std::endl;
 #endif
 
+
     nlohmann::json returnResult;
     try {
-        if(!query.empty()) {
-            auto res = client.Get(query);
-            if (isConnectionValid() && res->status == 200) {
-                returnResult = nlohmann::json::parse(res->body);
-            }
-            else {
-                std::cerr << "HTTP Get Failed; ";
-                if (!res) {
-                    std::cerr << "Connection Error!" << std::endl;
-                }
-                else {
-                    std::cerr << "HTTP Status Code: " << res->status << std::endl;
-                }
-            }
+        std::ostringstream builder;
+        builder << "/lights";
+        if (!query.empty()) {
+            builder << "/" << query;
+        }
+        std::string queryString = builder.str();
+
+#ifdef DEBUG_BUILD
+        std::cout << "Query String Builder: " << queryString << std::endl;
+#endif
+
+
+        auto res = client.Get(queryString);
+        if (isConnectionValid() && res->status == 200) {
+            returnResult = nlohmann::json::parse(res->body);
         }
         else {
-            std::cerr << "Query is empty..." << std::endl;
+            std::cerr << "HTTP Get Failed; ";
+            if (!res) {
+                std::cerr << "Connection Error!" << std::endl;
+            }
+            else {
+                std::cerr << "HTTP Status Code: " << res->status << std::endl;
+            }
         }
     }
     catch (const nlohmann::json::exception &e) {
@@ -167,4 +220,105 @@ int HomeLights::convertValueToFromPercentage(bool toFromPercentage, int value) {
     }
 
     return returnValue;
+}
+
+void HomeLights::inspectDataForChanges(bool checkForNewData) {
+
+#ifdef DEBUG_BUILD
+    std::cout << "In Function: HomeLights::inspectDataForChanges" << std::endl;
+#endif
+
+    if(checkForNewData) {
+        nlohmann::json result;
+        for (auto &light : newLightData) {
+            std::string searchId = light[lightKeys[0]];
+
+#ifdef DEBUG_BUILD
+            std::cout << "Light: " << light << std::endl;
+#endif
+
+            // Search for light in currentLightData by use of id match. If found, capture entire light data set.
+            auto currentLightMatch = std::find_if(currentLightData.begin(), currentLightData.end(),
+                                                  [&searchId, this](const nlohmann::json &currentLight){
+                                                      return currentLight.contains(lightKeys[0]) && currentLight[lightKeys[0]] == searchId;
+                                                  });
+
+#ifdef DEBUG_BUILD
+            std::cout << "currentLightMatch: " << *currentLightMatch << std::endl;
+#endif
+
+            auto currentLight = *currentLightMatch;
+            // If match found does not equal to end, we found an existing light and need to inspect for any changes
+            // and capture found changes.
+            if (currentLightMatch != currentLightData.end()) {
+                for(const std::string &key : lightKeys){
+                    if(key == "id") {
+                        continue;
+                    }
+                    if(light[key] != currentLight[key]) {
+                        captureChangeToQueue(searchId, key, light[key]);
+                    }
+                }
+                if (light != currentLight) {
+                    currentLightData = newLightData;
+                }
+            }
+            else {
+                // If match does equal to end, we have a new light and need to capture all light data.
+                captureChangeToQueue(light);
+                currentLightData = newLightData;
+            }
+        }
+    }
+    else {
+//        unused
+    }
+}
+
+bool HomeLights::areAnyChangesInQueue() {
+
+#ifdef DEBUG_BUILD
+    std::cout << "In Function: HomeLights::areAnyChangesInQueue" << std::endl;
+    std::cout << "changesToLightState queue empty status: " << std::boolalpha << changesToLightState.empty() << std::noboolalpha << std::endl;
+#endif
+
+    return changesToLightState.empty();
+}
+
+void HomeLights::captureChangeToQueue(const std::string &changeId, const std::string &changeKey,
+                                      const std::string &statusChange) {
+
+#ifdef DEBUG_BUILD
+    std::cout << "In Function: HomeLights::captureChangeToQueue" << std::endl;
+    std::cout << "\tchangeId: " << changeId << " | changeKey: " << changeKey << " | statusChange: " << statusChange << std::endl;
+#endif
+
+    nlohmann::ordered_json temp = {{lightKeys[0], changeId},
+                                   {changeKey, statusChange}};
+
+    changesToLightState.push(temp);
+
+}
+
+void HomeLights::captureChangeToQueue(const nlohmann::json &lightChange) {
+
+#ifdef DEBUG_BUILD
+    std::cout << "In Function: HomeLights::captureChangeToQueue" << std::endl;
+    std::cout << "lightChange: " << lightChange.dump(2) << std::endl;
+#endif
+
+    changesToLightState.push(lightChange);
+
+}
+
+nlohmann::ordered_json HomeLights::getLightStateChange() {
+    nlohmann::ordered_json frontChange = changesToLightState.front();
+
+#ifdef DEBUG_BUILD
+    std::cout << "In Function: HomeLights::getLightStateChange" << std::endl;
+    std::cout << "frontChange: " << frontChange.dump(2) << std::endl;
+#endif
+
+    changesToLightState.pop();
+    return frontChange;
 }

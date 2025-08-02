@@ -3558,7 +3558,7 @@ NLOHMANN_JSON_NAMESPACE_END
     template<class Key, class T, class IgnoredLess, class Allocator>
     struct ordered_map;
 
-    /// @brief specialization that maintains the insertion order of object keys
+    /// @brief specialization that maintains the insertion order of object lightKeys
     /// @sa https://json.nlohmann.me/api/ordered_json/
     using ordered_json = basic_json<nlohmann::ordered_map>;
 
@@ -9586,7 +9586,7 @@ class json_sax_dom_callback_parser
     std::vector<BasicJsonType*> ref_stack {};
     /// stack to manage which values to keep
     std::vector<bool> keep_stack {}; // NOLINT(readability-redundant-member-init)
-    /// stack to manage which object keys to keep
+    /// stack to manage which object lightKeys to keep
     std::vector<bool> key_keep_stack {}; // NOLINT(readability-redundant-member-init)
     /// helper to hold the reference for the next object element
     BasicJsonType* object_element = nullptr;
@@ -15346,7 +15346,7 @@ class json_pointer
                 }
                 else
                 {
-                    // iterate object and use keys as reference string
+                    // iterate object and use lightKeys as reference string
                     for (const auto& element : *value.m_data.m_value.object)
                     {
                         flatten(detail::concat<string_t>(reference_string, '/', detail::escape(element.first)), element.second, result);
@@ -18900,7 +18900,7 @@ class serializer
     additional parameter. In case of arrays and objects, the function is
     called recursively.
 
-    - strings and object keys are escaped using `escape_string()`
+    - strings and object lightKeys are escaped using `escape_string()`
     - integer numbers are converted implicitly via `operator<<`
     - floating-point numbers are converted to a string using `"%g"` format
     - binary values are serialized as objects containing the subtype and the
@@ -23537,14 +23537,14 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
         set_parents();
     }
 
-    /// @brief updates a JSON object from another object, overwriting existing keys
+    /// @brief updates a JSON object from another object, overwriting existing lightKeys
     /// @sa https://json.nlohmann.me/api/basic_json/update/
     void update(const_reference j, bool merge_objects = false)
     {
         update(j.begin(), j.end(), merge_objects);
     }
 
-    /// @brief updates a JSON object from another object, overwriting existing keys
+    /// @brief updates a JSON object from another object, overwriting existing lightKeys
     /// @sa https://json.nlohmann.me/api/basic_json/update/
     void update(const_iterator first, const_iterator last, bool merge_objects = false) // NOLINT(performance-unnecessary-value-param)
     {

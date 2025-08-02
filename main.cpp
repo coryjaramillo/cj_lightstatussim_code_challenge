@@ -1,5 +1,5 @@
 // Standard Libraries
-
+#include <thread>
 
 // Local Libraries
 #include "HomeLights.h"
@@ -9,11 +9,11 @@
 #include "json.hpp"
 
 // REQUIREMENTS
-//    print out text based on the state of the lights
-//    printouts need to be in JSON format
-//    upon startup, all lights and their state should be printed out in the order of: name, id, room, on, brightness
-//    the 'on' property is a boolean for light on or off
-//    The brightness property is 0-100 integer output representing % brightness. API range is 0-255, so must translate to percentage accurately.
+//    print out text based on the state of the lights - DONE
+//    printouts need to be in JSON format - DONE
+//    upon startup, all lights and their state should be printed out in the order of: name, id, room, on, brightness - DONE
+//    the 'on' property is a boolean for light on or off - DONE
+//    The brightness property is 0-100 integer output representing % brightness. API range is 0-255, so must translate to percentage accurately. - DONE
 //    all subsequent printouts shall only printout any changes in the lights' states, but just individual changes.
 //    program detects when a light has been added or removed from the system
 //    newly discovered light get a full state print
@@ -41,6 +41,24 @@ int main() {
     homeLights.displayAllLights();
 
 
+    do {
+        homeLights.captureLightData(true);
+
+        if (!homeLights.areAnyChangesInQueue()){
+            while (!homeLights.areAnyChangesInQueue()) {
+                auto change = homeLights.getLightStateChange();
+                std::cout << change.dump(4) << std::endl;
+            }
+        }
+        else {
+
+#ifdef DEBUG_BUILD
+            std::cout << "Sleeping for 100 milliseconds..." << std::endl;
+#endif
+
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        }
+    } while(true);
 
 
 
