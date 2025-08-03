@@ -47,6 +47,9 @@ int main() {
         if (!homeLights.areAnyChangesInQueue()){
             while (!homeLights.areAnyChangesInQueue()) {
                 auto change = homeLights.getLightStateChange();
+#ifdef DEBUG_BUILD
+                std::cout << "CHANGE CAPTURED..." << std::endl;
+#endif
                 std::cout << change.dump(4) << std::endl;
             }
         }

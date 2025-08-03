@@ -251,21 +251,63 @@ void HomeLights::inspectDataForChanges(bool checkForNewData) {
             // If match found does not equal to end, we found an existing light and need to inspect for any changes
             // and capture found changes.
             if (currentLightMatch != currentLightData.end()) {
-                for(const std::string &key : lightKeys){
-                    if(key == "id") {
-                        continue;
-                    }
-                    if(light[key] != currentLight[key]) {
-                        captureChangeToQueue(searchId, key, light[key]);
+
+#ifdef DEBUG_BUILD
+                std::cout << "Light found in current light data..." << std::endl;
+#endif
+                try {
+                    for(const std::string &key : lightKeys){
+                        if(key == "id") {
+                            continue;
+                        }
+
+    #ifdef DEBUG_BUILD
+                        std::cout << "\tlight[key]: " << light[key] << " | " << typeid(light[key]).name() << std::endl;
+                        std::cout << "\tcurrentLight[key]: " << currentLight[key] << " | " << typeid(currentLight[key]).name() << std::endl;
+                        std::cout << "\tcomparison: " << std::boolalpha << (light[key] != currentLight[key]) << std::noboolalpha << std::endl;
+    #endif
+
+                        if(light[key] != currentLight[key]) {
+
+    #ifdef DEBUG_BUILD
+                            std::cout << "Change to Light has been Identified..." << std::endl;
+                            std::cout << "\tsearchId: " << searchId << " | " << typeid(searchId).name() << std::endl;
+                            std::cout << "\tkey: " << key << " | " << typeid(key).name() << std::endl;
+                            std::cout << "\tlight[key]: " << light[key] << " | " << typeid(light[key]).name() << std::endl;
+    #endif
+
+                            nlohmann::ordered_json temp = {{lightKeys[0], searchId},
+                                                           {key, light[key]}};
+                            changesToLightState.emplace(temp);
+                        }
                     }
                 }
+                catch (const nlohmann::json::exception &e) {
+                    std::cerr << "JSON Exception: " << e.what() << std::endl;
+                }
+                catch (const std::exception &exception) {
+                    std::cerr << "Standard Exception: " << exception.what() << std::endl;
+                }
+                catch (...) {
+                    std::cerr << "An unknown exception occurred..." << std::endl;
+                }
+
                 if (light != currentLight) {
+
+#ifdef DEBUG_BUILD
+                    std::cout << "Updating currentLightData with newLightData..." << std::endl;
+#endif
+
                     currentLightData = newLightData;
                 }
             }
             else {
                 // If match does equal to end, we have a new light and need to capture all light data.
-                captureChangeToQueue(light);
+
+#ifdef DEBUG_BUILD
+                std::cout << "New light found..." << std::endl;
+#endif
+                changesToLightState.emplace(light);
                 currentLightData = newLightData;
             }
         }
@@ -285,31 +327,6 @@ bool HomeLights::areAnyChangesInQueue() {
     return changesToLightState.empty();
 }
 
-void HomeLights::captureChangeToQueue(const std::string &changeId, const std::string &changeKey,
-                                      const std::string &statusChange) {
-
-#ifdef DEBUG_BUILD
-    std::cout << "In Function: HomeLights::captureChangeToQueue" << std::endl;
-    std::cout << "\tchangeId: " << changeId << " | changeKey: " << changeKey << " | statusChange: " << statusChange << std::endl;
-#endif
-
-    nlohmann::ordered_json temp = {{lightKeys[0], changeId},
-                                   {changeKey, statusChange}};
-
-    changesToLightState.push(temp);
-
-}
-
-void HomeLights::captureChangeToQueue(const nlohmann::json &lightChange) {
-
-#ifdef DEBUG_BUILD
-    std::cout << "In Function: HomeLights::captureChangeToQueue" << std::endl;
-    std::cout << "lightChange: " << lightChange.dump(2) << std::endl;
-#endif
-
-    changesToLightState.push(lightChange);
-
-}
 
 nlohmann::ordered_json HomeLights::getLightStateChange() {
     nlohmann::ordered_json frontChange = changesToLightState.front();

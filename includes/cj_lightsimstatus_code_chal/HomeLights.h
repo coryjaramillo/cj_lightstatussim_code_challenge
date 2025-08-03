@@ -62,8 +62,6 @@ private:
 
     nlohmann::json queryLightsAPI(const std::string& query = "");
     void inspectDataForChanges(bool checkForNewData = false);
-    void captureChangeToQueue(const std::string &changeId, const std::string &changeKey, const std::string &statusChange);
-    void captureChangeToQueue(const nlohmann::json &lightChange);
     static int convertValueToFromPercentage(bool toFromPercentage, int value); //true:toPercentage;false:fromPercentage
 };
 
