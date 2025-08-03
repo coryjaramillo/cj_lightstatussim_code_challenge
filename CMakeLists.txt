@@ -23,3 +23,14 @@ target_link_libraries(${PROJECT_NAME} PRIVATE ws2_32)
 target_include_directories(${PROJECT_NAME} PUBLIC
         ${CMAKE_SOURCE_DIR}/external
         ${CMAKE_SOURCE_DIR}/includes/${PROJECT_NAME})
+
+# ==== INSTALL AND PACKAGING SECTION (ADD THIS AT THE END) ====
+# Install target and extra files into package directory structure
+install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
+install(FILES ${CMAKE_SOURCE_DIR}/config/appconfig.json DESTINATION config)
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/docs/ DESTINATION docs)
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/resources/ DESTINATION resources)
+
+# Optionally set CPack/packaging options
+set(CPACK_GENERATOR "ZIP")
+include(CPack)
