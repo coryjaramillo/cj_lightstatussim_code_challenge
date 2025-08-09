@@ -23,16 +23,6 @@
 
 
 int main() {
-
-
-//    httplib::Server server;
-//
-//    server.Get("/hi", [](const httplib::Request &, httplib::Response &res) {
-//        res.set_content("Hello World!", "text/plain");
-//    });
-//
-//    server.listen("0.0.0.0", 8080);
-
     std::string currentHost = "localhost";
     int currentPort = 8080;
 
@@ -47,7 +37,7 @@ int main() {
         if (!homeLights.areAnyChangesInQueue()){
             while (!homeLights.areAnyChangesInQueue()) {
                 auto change = homeLights.getLightStateChange();
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_SIMPLE
                 std::cout << "CHANGE CAPTURED..." << std::endl;
 #endif
                 std::cout << change.dump(4) << std::endl;
@@ -55,7 +45,7 @@ int main() {
         }
         else {
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_SIMPLE
             std::cout << "Sleeping for 100 milliseconds..." << std::endl;
 #endif
 

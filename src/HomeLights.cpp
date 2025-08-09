@@ -7,8 +7,9 @@
 
 HomeLights::HomeLights(const std::string &host, int port) : client(host, port){
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_VERBOSE
     std::cout << "In Function: HomeLights::HomeLights" << std::endl;
+    std::cout << "\tFunction Arguments:-->host: " << host << ", port: " << port << std::endl;
 #endif
 
 
@@ -19,7 +20,7 @@ HomeLights::HomeLights(const std::string &host, int port) : client(host, port){
 
 bool HomeLights::isConnectionValid() {
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_VERBOSE
     std::cout << "In Function: HomeLights::isConnectionValid" << std::endl;
 #endif
 
@@ -40,7 +41,7 @@ bool HomeLights::isConnectionValid() {
 
 void HomeLights::displayAllLights() {
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_VERBOSE
     std::cout << "In Function: HomeLights::displayAllLights" << std::endl;
 #endif
 
@@ -55,15 +56,16 @@ void HomeLights::displayAllLights() {
 
 void HomeLights::captureLightData(bool checkForNewData) {
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_VERBOSE
     std::cout << "In Function: HomeLights::captureLightData" << std::endl;
+    std::cout << std::boolalpha << "\tFunction Argument:-->checkForNewData: " << checkForNewData << std::noboolalpha << std::endl;
 #endif
 
 
     if (isConnectionValid()) {
         if (checkForNewData) {
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_SIMPLE
             std::cout << "Checking for New Data..." << std::endl;
 #endif
 
@@ -71,7 +73,7 @@ void HomeLights::captureLightData(bool checkForNewData) {
         }
         else {
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_SIMPLE
             std::cout << "Populating Current Data..." << std::endl;
 #endif
 
@@ -81,7 +83,7 @@ void HomeLights::captureLightData(bool checkForNewData) {
 
         if(checkForNewData) {
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_SIMPLE
             std::cout << "Inspecting Data for changes..." << std::endl;
 #endif
 
@@ -89,20 +91,21 @@ void HomeLights::captureLightData(bool checkForNewData) {
         }
     }
     else {
-        std::cout << "Connection to " << myHost << ":" << myPort << " is invalid." << std::endl;
+        std::cerr << "Connection to " << myHost << ":" << myPort << " is invalid." << std::endl;
     }
 }
 
 void HomeLights::extractLightStates(bool checkForNewData) {
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_VERBOSE
     std::cout << "In Function: HomeLights::extractLightStates" << std::endl;
+    std::cout << std::boolalpha << "\tFunction Argument:-->checkForNewData: " << checkForNewData << std::noboolalpha << std::endl;
 #endif
 
 
     nlohmann::ordered_json *targetContainer = checkForNewData ? &newLightData : &currentLightData;
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_VERBOSE
     std::cout << "newLightData Container: " << newLightData << std::endl;
     std::cout << "currentLightData Container: " << currentLightData << std::endl;
     std::cout << "Target Container: " << *targetContainer << std::endl;
@@ -114,7 +117,7 @@ void HomeLights::extractLightStates(bool checkForNewData) {
             std::string id = currentLight[lightKeys[0]];
 
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_VERBOSE
             std::cout << "ON Key in Current Light? " << currentLight.contains(lightKeys[3]) << std::endl;
             std::cout << "Brightness Key in Current Light? " << currentLight.contains(lightKeys[4]) << std::endl;
 #endif
@@ -126,7 +129,7 @@ void HomeLights::extractLightStates(bool checkForNewData) {
                 if (light.contains(lightKeys[3])) {
                     currentLight[lightKeys[3]] = light[lightKeys[3]];
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_VERBOSE
                     std::cout << "\nlight on state: " << light[lightKeys[3]] << " | type: " << typeid(light[lightKeys[3]]).name() << std::endl;
                     std::cout << "currentLight on state: " << currentLight[lightKeys[3]] << " | type: " << typeid(currentLight[lightKeys[3]]).name() << std::endl;
 #endif
@@ -140,7 +143,7 @@ void HomeLights::extractLightStates(bool checkForNewData) {
                 if (light.contains(lightKeys[4])) {
                     currentLight[lightKeys[4]] = convertValueToFromPercentage(true, light[lightKeys[4]]);
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_VERBOSE
                     std::cout << "\nbrightness: " << light[lightKeys[4]] << " | type: " << typeid(light[lightKeys[4]]).name() << std::endl;
                     std::cout << "brightness converted: " << currentLight[lightKeys[4]] << std::endl;
 #endif
@@ -162,8 +165,9 @@ void HomeLights::extractLightStates(bool checkForNewData) {
 
 nlohmann::json HomeLights::queryLightsAPI(const std::string& query) {
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_VERBOSE
     std::cout << "In Function: HomeLights::queryLightsAPI" << std::endl;
+    std::cout << "\tFunction Argument:-->query: " << query << std::endl;
 #endif
 
 
@@ -176,7 +180,7 @@ nlohmann::json HomeLights::queryLightsAPI(const std::string& query) {
         }
         std::string queryString = builder.str();
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_SIMPLE
         std::cout << "Query String Builder: " << queryString << std::endl;
 #endif
 
@@ -210,6 +214,10 @@ nlohmann::json HomeLights::queryLightsAPI(const std::string& query) {
 
 //true:toPercentage|false:fromPercentage
 int HomeLights::convertValueToFromPercentage(bool toFromPercentage, int value) {
+#ifdef DEBUG_BUILD_VERBOSE
+    std::cout << "In Function: HomeLights::convertValueToFromPercentage" << std::endl;
+    std::cout << std::boolalpha << "\tFunction Arguments:-->toFromPercentage: " << toFromPercentage << " | value: " << value << std::noboolalpha << std::endl;
+#endif
     int returnValue = 0;
 
     if (toFromPercentage) {
@@ -224,8 +232,9 @@ int HomeLights::convertValueToFromPercentage(bool toFromPercentage, int value) {
 
 void HomeLights::inspectDataForChanges(bool checkForNewData) {
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_VERBOSE
     std::cout << "In Function: HomeLights::inspectDataForChanges" << std::endl;
+    std::cout << std::boolalpha << "\tFunction Argument:-->checkForNewData: " << checkForNewData << std::noboolalpha << std::endl;
 #endif
 
     if(checkForNewData) {
@@ -233,7 +242,7 @@ void HomeLights::inspectDataForChanges(bool checkForNewData) {
         for (auto &light : newLightData) {
             std::string searchId = light[lightKeys[0]];
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_SIMPLE
             std::cout << "Light: " << light << std::endl;
 #endif
 
@@ -243,7 +252,7 @@ void HomeLights::inspectDataForChanges(bool checkForNewData) {
                                                       return currentLight.contains(lightKeys[0]) && currentLight[lightKeys[0]] == searchId;
                                                   });
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_SIMPLE
             std::cout << "currentLightMatch: " << *currentLightMatch << std::endl;
 #endif
 
@@ -252,7 +261,7 @@ void HomeLights::inspectDataForChanges(bool checkForNewData) {
             // and capture found changes.
             if (currentLightMatch != currentLightData.end()) {
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_SIMPLE
                 std::cout << "Light found in current light data..." << std::endl;
 #endif
                 try {
@@ -261,20 +270,20 @@ void HomeLights::inspectDataForChanges(bool checkForNewData) {
                             continue;
                         }
 
-    #ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_VERBOSE
                         std::cout << "\tlight[key]: " << light[key] << " | " << typeid(light[key]).name() << std::endl;
                         std::cout << "\tcurrentLight[key]: " << currentLight[key] << " | " << typeid(currentLight[key]).name() << std::endl;
                         std::cout << "\tcomparison: " << std::boolalpha << (light[key] != currentLight[key]) << std::noboolalpha << std::endl;
-    #endif
+#endif
 
                         if(light[key] != currentLight[key]) {
 
-    #ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_VERBOSE
                             std::cout << "Change to Light has been Identified..." << std::endl;
                             std::cout << "\tsearchId: " << searchId << " | " << typeid(searchId).name() << std::endl;
                             std::cout << "\tkey: " << key << " | " << typeid(key).name() << std::endl;
                             std::cout << "\tlight[key]: " << light[key] << " | " << typeid(light[key]).name() << std::endl;
-    #endif
+#endif
 
                             nlohmann::ordered_json temp = {{lightKeys[0], searchId},
                                                            {key, light[key]}};
@@ -294,7 +303,7 @@ void HomeLights::inspectDataForChanges(bool checkForNewData) {
 
                 if (light != currentLight) {
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_SIMPLE
                     std::cout << "Updating currentLightData with newLightData..." << std::endl;
 #endif
 
@@ -304,7 +313,7 @@ void HomeLights::inspectDataForChanges(bool checkForNewData) {
             else {
                 // If match does equal to end, we have a new light and need to capture all light data.
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_SIMPLE
                 std::cout << "New light found..." << std::endl;
 #endif
                 changesToLightState.emplace(light);
@@ -319,9 +328,9 @@ void HomeLights::inspectDataForChanges(bool checkForNewData) {
 
 bool HomeLights::areAnyChangesInQueue() {
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_VERBOSE
     std::cout << "In Function: HomeLights::areAnyChangesInQueue" << std::endl;
-    std::cout << "changesToLightState queue empty status: " << std::boolalpha << changesToLightState.empty() << std::noboolalpha << std::endl;
+    std::cout << std::boolalpha << "\tchangesToLightState queue empty status: " << changesToLightState.empty() << std::noboolalpha << std::endl;
 #endif
 
     return changesToLightState.empty();
@@ -331,9 +340,9 @@ bool HomeLights::areAnyChangesInQueue() {
 nlohmann::ordered_json HomeLights::getLightStateChange() {
     nlohmann::ordered_json frontChange = changesToLightState.front();
 
-#ifdef DEBUG_BUILD
+#ifdef DEBUG_BUILD_VERBOSE
     std::cout << "In Function: HomeLights::getLightStateChange" << std::endl;
-    std::cout << "frontChange: " << frontChange.dump(2) << std::endl;
+    std::cout << "\tfrontChange: " << frontChange.dump(2) << std::endl;
 #endif
 
     changesToLightState.pop();
