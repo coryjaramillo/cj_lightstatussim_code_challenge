@@ -238,30 +238,38 @@ void HomeLights::inspectDataForChanges(bool checkForNewData) {
 #endif
 
     if(checkForNewData) {
-        nlohmann::json result;
-        for (auto &light : newLightData) {
-            std::string searchId = light[lightKeys[0]];
+        // loop through newLightData and detect and changes or new lights
+        for (auto &newLight : newLightData) {
+            std::string searchId = newLight[lightKeys[0]];
 
 #ifdef DEBUG_BUILD_SIMPLE
-            std::cout << "Light: " << light << std::endl;
+            std::cout << "New Light: " << newLight << std::endl;
 #endif
 
-            // Search for light in currentLightData by use of id match. If found, capture entire light data set.
-            auto currentLightMatch = std::find_if(currentLightData.begin(), currentLightData.end(),
-                                                  [&searchId, this](const nlohmann::json &currentLight){
-                                                      return currentLight.contains(lightKeys[0]) && currentLight[lightKeys[0]] == searchId;
-                                                  });
-
-#ifdef DEBUG_BUILD_SIMPLE
-            std::cout << "currentLightMatch: " << *currentLightMatch << std::endl;
+#ifdef DEBUG_BUILD_VERBOSE
+            std::cout << "\tcurrentLightData: " << currentLightData << std::endl;
+            std::cout << "\tsearchId: " << searchId << std::endl;
+            std::cout << "\tlightKeys[0]: " << lightKeys[0] << std::endl;
 #endif
 
-            auto currentLight = *currentLightMatch;
+            // Search for the light by ID in currentLightData
+            auto currentLightMatch = std::find_if(
+                    currentLightData.begin(),
+                    currentLightData.end(),
+                    [&searchId, this](const nlohmann::json &candidate) {
+                        return candidate.contains(lightKeys[0]) && candidate[lightKeys[0]] == searchId;
+                    }
+            );
+
+
             // If match found does not equal to end, we found an existing light and need to inspect for any changes
             // and capture found changes.
             if (currentLightMatch != currentLightData.end()) {
+                // Found an existing light; safe to dereference iterator
+                const auto &currentLight = *currentLightMatch;
 
 #ifdef DEBUG_BUILD_SIMPLE
+                std::cout << "currentLight: " << currentLight << std::endl;
                 std::cout << "Light found in current light data..." << std::endl;
 #endif
                 try {
@@ -271,22 +279,22 @@ void HomeLights::inspectDataForChanges(bool checkForNewData) {
                         }
 
 #ifdef DEBUG_BUILD_VERBOSE
-                        std::cout << "\tlight[key]: " << light[key] << " | " << typeid(light[key]).name() << std::endl;
+                        std::cout << "\tnewLight[key]: " << newLight[key] << " | " << typeid(newLight[key]).name() << std::endl;
                         std::cout << "\tcurrentLight[key]: " << currentLight[key] << " | " << typeid(currentLight[key]).name() << std::endl;
-                        std::cout << "\tcomparison: " << std::boolalpha << (light[key] != currentLight[key]) << std::noboolalpha << std::endl;
+                        std::cout << "\tcomparison: " << std::boolalpha << (newLight[key] != currentLight[key]) << std::noboolalpha << std::endl;
 #endif
 
-                        if(light[key] != currentLight[key]) {
+                        if(newLight[key] != currentLight[key]) {
 
 #ifdef DEBUG_BUILD_VERBOSE
                             std::cout << "Change to Light has been Identified..." << std::endl;
                             std::cout << "\tsearchId: " << searchId << " | " << typeid(searchId).name() << std::endl;
                             std::cout << "\tkey: " << key << " | " << typeid(key).name() << std::endl;
-                            std::cout << "\tlight[key]: " << light[key] << " | " << typeid(light[key]).name() << std::endl;
+                            std::cout << "\tnewLight[key]: " << newLight[key] << " | " << typeid(newLight[key]).name() << std::endl;
 #endif
 
                             nlohmann::ordered_json temp = {{lightKeys[0], searchId},
-                                                           {key, light[key]}};
+                                                           {key, newLight[key]}};
                             changesToLightState.emplace(temp);
                         }
                     }
@@ -301,7 +309,7 @@ void HomeLights::inspectDataForChanges(bool checkForNewData) {
                     std::cerr << "An unknown exception occurred..." << std::endl;
                 }
 
-                if (light != currentLight) {
+                if (newLight != currentLight) {
 
 #ifdef DEBUG_BUILD_SIMPLE
                     std::cout << "Updating currentLightData with newLightData..." << std::endl;
@@ -316,10 +324,30 @@ void HomeLights::inspectDataForChanges(bool checkForNewData) {
 #ifdef DEBUG_BUILD_SIMPLE
                 std::cout << "New light found..." << std::endl;
 #endif
-                changesToLightState.emplace(light);
-                currentLightData = newLightData;
+                changesToLightState.emplace(newLight);
             }
         }
+
+        // loop through currentLightData to check and see if it no longer exists in newLightData, which means that a light has been removed
+        for (auto &oldLight: currentLightData) {
+            std::string oldId = oldLight[lightKeys[0]];
+
+            auto newLightMatch = std::find_if(
+                    newLightData.begin(),
+                    newLightData.end(),
+                    [&oldId, this](const nlohmann::json &candidate) {
+                        return candidate.contains(lightKeys[0]) && candidate[lightKeys[0]] == oldId;
+                    }
+            );
+
+            if (newLightMatch == newLightData.end()) {
+                // Light exists in old data, not in new ➡ removed
+                std::cout << oldLight[lightKeys[1]] << " (" << oldId << ") has been removed" << std::endl;
+            }
+        }
+
+        // update the stored state
+        currentLightData = newLightData;
     }
     else {
 //        unused
