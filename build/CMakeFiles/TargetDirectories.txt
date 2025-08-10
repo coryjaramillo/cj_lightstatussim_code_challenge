@@ -1,0 +1,9 @@
+/home/engine/project/build/CMakeFiles/cj_lightsimstatus_code_chal.dir
+/home/engine/project/build/CMakeFiles/test.dir
+/home/engine/project/build/CMakeFiles/edit_cache.dir
+/home/engine/project/build/CMakeFiles/rebuild_cache.dir
+/home/engine/project/build/tests/CMakeFiles/HomeLightsTests.dir
+/home/engine/project/build/tests/CMakeFiles/IntegrationTests.dir
+/home/engine/project/build/tests/CMakeFiles/test.dir
+/home/engine/project/build/tests/CMakeFiles/edit_cache.dir
+/home/engine/project/build/tests/CMakeFiles/rebuild_cache.dir
