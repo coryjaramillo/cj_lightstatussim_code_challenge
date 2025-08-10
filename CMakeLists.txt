@@ -9,6 +9,9 @@ endif()
 if(CMAKE_BUILD_TYPE STREQUAL "Debug_Verbose")
     add_definitions(-DDEBUG_BUILD_VERBOSE)
 endif()
+if(CMAKE_BUILD_TYPE STREQUAL "Debug_All")
+    add_definitions(-DDEBUG_BUILD_VERBOSE -DDEBUG_BUILD_SIMPLE)
+endif()
 
 add_executable(${PROJECT_NAME} main.cpp
         src/HomeLights.cpp
