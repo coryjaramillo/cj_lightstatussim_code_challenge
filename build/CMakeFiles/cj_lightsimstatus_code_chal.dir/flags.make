@@ -6,5 +6,5 @@ CXX_DEFINES = -D_WIN32_WINNT=0x0A00
 
 CXX_INCLUDES = -I/home/engine/project/external -I/home/engine/project/includes/cj_lightsimstatus_code_chal
 
-CXX_FLAGS = -g -std=gnu++14
+CXX_FLAGS = -std=gnu++14
 

@@ -1,1 +1,1 @@
-/usr/bin/c++ -g -Wl,--dependency-file,CMakeFiles/HomeLightsTests.dir/link.d CMakeFiles/HomeLightsTests.dir/HomeLightsTests.cpp.o CMakeFiles/HomeLightsTests.dir/__/src/HomeLights.cpp.o -o HomeLightsTests  -lws2_32
+/usr/bin/c++ -Wl,--dependency-file,CMakeFiles/HomeLightsTests.dir/link.d CMakeFiles/HomeLightsTests.dir/HomeLightsTests.cpp.o CMakeFiles/HomeLightsTests.dir/__/src/HomeLights.cpp.o -o HomeLightsTests  -lws2_32

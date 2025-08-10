@@ -6,5 +6,5 @@ CXX_DEFINES = -DDEBUG_BUILD_SIMPLE -DDEBUG_BUILD_VERBOSE -D_WIN32_WINNT=0x0A00
 
 CXX_INCLUDES = -I/home/engine/project/includes/cj_lightsimstatus_code_chal -I/home/engine/project/external -I/home/engine/project/tests
 
-CXX_FLAGS = -g -std=gnu++14
+CXX_FLAGS = -std=gnu++14
 
