@@ -32,13 +32,13 @@ public:
     ~HomeLights() = default;
 
     // Getters
-    void captureLightData(bool checkForNewData = false);
     nlohmann::ordered_json getLightStateChange();
 
     // Setters
 
 
     // Utility Methods
+    void captureLightData(bool checkForNewData = false);
     bool isConnectionValid();
     bool areAnyChangesInQueue();
     void displayAllLights();
