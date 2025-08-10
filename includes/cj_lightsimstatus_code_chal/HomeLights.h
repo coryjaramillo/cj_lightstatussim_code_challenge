@@ -23,6 +23,8 @@
 
 
 class HomeLights {
+    // Friend class for unit testing
+    friend class MockHomeLights;
 
 public:
     // Constructor

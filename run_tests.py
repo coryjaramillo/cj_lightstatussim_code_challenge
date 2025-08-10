@@ -1,14 +1,19 @@
 #!/usr/bin/env python3
 """
 Test runner script for HomeLights C++ project
-Builds and runs all unit tests and integration tests
+Cross-platform: Builds and runs all unit tests and integration tests on Windows and Linux
 """
 
 import os
 import subprocess
 import sys
 import argparse
+import platform
 from pathlib import Path
+
+def get_executable_extension():
+    """Get the executable extension for the current platform"""
+    return ".exe" if platform.system() == "Windows" else ""
 
 def run_command(cmd, cwd=None, capture_output=False):
     """Run a shell command and return the result"""
@@ -34,9 +39,12 @@ def build_project(build_dir, build_type="Debug", clean=False):
     # Clean build if requested
     if clean and os.path.exists(build_dir):
         print("Cleaning previous build...")
-        returncode, _, _ = run_command(f"rm -rf {build_dir}/*", cwd=".")
-        if returncode != 0:
-            print("Warning: Could not clean build directory")
+        try:
+            import shutil
+            shutil.rmtree(build_dir)
+            os.makedirs(build_dir, exist_ok=True)
+        except Exception as e:
+            print(f"Warning: Could not clean build directory: {e}")
     
     # Configure CMake
     cmake_cmd = f"cmake .. -DCMAKE_BUILD_TYPE={build_type} -DBUILD_TESTS=ON"
@@ -69,7 +77,8 @@ def run_unit_tests(build_dir):
     print("RUNNING UNIT TESTS")
     print("="*50)
     
-    test_executable = os.path.join(".", build_dir, "tests", "HomeLightsTests")
+    exe_ext = get_executable_extension()
+    test_executable = os.path.join(".", build_dir, "tests", f"HomeLightsTests{exe_ext}")
     
     if not os.path.exists(test_executable):
         print(f"Unit test executable not found at {test_executable}")
@@ -84,7 +93,8 @@ def run_integration_tests(build_dir):
     print("RUNNING INTEGRATION TESTS")
     print("="*50)
     
-    test_executable = os.path.join(".", build_dir, "tests", "IntegrationTests")
+    exe_ext = get_executable_extension()
+    test_executable = os.path.join(".", build_dir, "tests", f"IntegrationTests{exe_ext}")
     
     if not os.path.exists(test_executable):
         print(f"Integration test executable not found at {test_executable}")

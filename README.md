@@ -113,16 +113,23 @@ Kitchen (2) has been removed
 
 ## Testing
 
-The project includes comprehensive unit tests and integration tests.
+The project includes comprehensive unit tests and integration tests with cross-platform support.
 
 ### Quick Test Run
 ```bash
-# Run all tests
+# Linux/macOS
 ./run_tests.sh
 
-# Or use Python script
+# Cross-platform Python
 python3 run_tests.py
+
+# Windows (multiple options)
+run_tests.bat           # Windows batch file
+.\run_tests.ps1         # PowerShell script  
+python run_tests.py     # Python (Windows compatible)
 ```
+
+**Windows 11 Users**: See [WINDOWS_TESTING_README.md](WINDOWS_TESTING_README.md) for comprehensive Windows testing guide.
 
 ### Test Categories
 - **Unit Tests**: Core functionality, brightness conversion, change detection
@@ -184,8 +191,11 @@ Control debug verbosity with build type:
 │   ├── IntegrationTests.cpp # Integration test suite
 │   └── README.md          # Testing documentation
 ├── CMakeLists.txt         # Build configuration
-├── run_tests.sh           # Test runner script (Bash)
-├── run_tests.py           # Test runner script (Python)
+├── run_tests.sh           # Test runner script (Linux/macOS)
+├── run_tests.py           # Cross-platform test runner (Python)
+├── run_tests.bat          # Test runner script (Windows batch)
+├── run_tests.ps1          # Test runner script (Windows PowerShell)
+├── WINDOWS_TESTING_README.md # Windows 11 testing guide
 └── README.md              # This file
 ```
 

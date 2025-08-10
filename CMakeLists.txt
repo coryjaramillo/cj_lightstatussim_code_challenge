@@ -30,6 +30,15 @@ target_include_directories(${PROJECT_NAME} PUBLIC
         ${CMAKE_SOURCE_DIR}/external
         ${CMAKE_SOURCE_DIR}/includes/${PROJECT_NAME})
 
+# ==== TEST CONFIGURATION ====
+option(BUILD_TESTS "Build unit tests" OFF)
+
+if(BUILD_TESTS)
+    enable_testing()
+    add_subdirectory(tests)
+    message(STATUS "Building with tests enabled")
+endif()
+
 # ==== INSTALL AND PACKAGING SECTION ====
 # Install target and extra files into package directory structure
 #install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
