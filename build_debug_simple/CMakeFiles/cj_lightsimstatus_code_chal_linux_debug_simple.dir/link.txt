@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/cj_lightsimstatus_code_chal_linux_debug_simple.dir/link.d CMakeFiles/cj_lightsimstatus_code_chal_linux_debug_simple.dir/main.cpp.o CMakeFiles/cj_lightsimstatus_code_chal_linux_debug_simple.dir/src/HomeLights.cpp.o -o cj_lightsimstatus_code_chal_linux_debug_simple  -ldl

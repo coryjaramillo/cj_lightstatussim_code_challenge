@@ -1,0 +1,8 @@
+/home/engine/project/build_debug_simple/CMakeFiles/cj_lightsimstatus_code_chal_linux_debug_simple.dir
+/home/engine/project/build_debug_simple/CMakeFiles/package_build.dir
+/home/engine/project/build_debug_simple/CMakeFiles/edit_cache.dir
+/home/engine/project/build_debug_simple/CMakeFiles/rebuild_cache.dir
+/home/engine/project/build_debug_simple/CMakeFiles/list_install_components.dir
+/home/engine/project/build_debug_simple/CMakeFiles/install.dir
+/home/engine/project/build_debug_simple/CMakeFiles/install/local.dir
+/home/engine/project/build_debug_simple/CMakeFiles/install/strip.dir
