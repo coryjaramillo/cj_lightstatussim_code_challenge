@@ -29,20 +29,3 @@ target_link_libraries(${PROJECT_NAME} PRIVATE ws2_32)
 target_include_directories(${PROJECT_NAME} PUBLIC
         ${CMAKE_SOURCE_DIR}/external
         ${CMAKE_SOURCE_DIR}/includes/${PROJECT_NAME})
-
-# ==== INSTALL AND PACKAGING SECTION ====
-# Install target and extra files into package directory structure
-#install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
-#install(FILES "${CMAKE_SOURCE_DIR}/config/appconfig.json" DESTINATION config)
-#install(DIRECTORY "${CMAKE_SOURCE_DIR}/docs/" DESTINATION docs)
-#install(DIRECTORY "${CMAKE_SOURCE_DIR}/resources/" DESTINATION resources)
-## install(FILES "${CMAKE_SOURCE_DIR}/external/some.dll" DESTINATION bin)
-#
-## Optionally set CPack/packaging options
-#set(CPACK_GENERATOR "ZIP")
-#set(CPACK_PACKAGE_VERSION_MAJOR "1")
-#set(CPACK_PACKAGE_VERSION_MINOR "0")
-#set(CPACK_PACKAGE_VERSION_PATCH "0")
-#set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
-#set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "CJ LightSimStatus Project - packaged with all resources.")
-#include(CPack)
