@@ -29,7 +29,7 @@ foreach ($BuildType in $BuildTypes) {
     $BuildDir = "build_$($BuildType.ToLower() -replace '_', '_')"
     $ExecutableName = "cj_lightsimstatus_code_chal_win11_$($BuildType.ToLower() -replace '_', '_').exe"
     
-    Write-Host "`n[$CurrentBuild/$TotalBuilds] Building $BuildType configuration..." -ForegroundColor Cyan
+    Write-Host ("`n[{0}/{1}] Building {2} configuration..." -f $CurrentBuild, $TotalBuilds, $BuildType) -ForegroundColor Cyan
     Write-Host "Build directory: $BuildDir" -ForegroundColor Gray
     Write-Host "Output: $ExecutableName" -ForegroundColor Gray
     
@@ -40,53 +40,46 @@ foreach ($BuildType in $BuildTypes) {
         }
         Set-Location $BuildDir
         
-        # Configure with CMake
+        # Configure
         Write-Host "Configuring..." -ForegroundColor Yellow
-        cmake -DCMAKE_BUILD_TYPE=$BuildType .. 2>&1 | Out-String | ForEach-Object {
+        cmake -DCMAKE_BUILD_TYPE=$BuildType .. 2>&1 | ForEach-Object {
             if ($_ -match "error|Error|ERROR") {
                 Write-Host $_ -ForegroundColor Red
             }
         }
-        
-        if ($LASTEXITCODE -ne 0) {
-            throw "CMake configuration failed"
-        }
-        
+        if ($LASTEXITCODE -ne 0) { throw "CMake configuration failed" }
+
         # Build
         Write-Host "Building..." -ForegroundColor Yellow
-        cmake --build . --config $BuildType 2>&1 | Out-String | ForEach-Object {
+        cmake --build . --config $BuildType 2>&1 | ForEach-Object {
             if ($_ -match "error|Error|ERROR") {
                 Write-Host $_ -ForegroundColor Red
             } elseif ($_ -match "warning|Warning|WARNING") {
                 Write-Host $_ -ForegroundColor Yellow
             }
         }
-        
-        if ($LASTEXITCODE -ne 0) {
-            throw "Build failed"
-        }
-        
-        # Verify executable was created
+        if ($LASTEXITCODE -ne 0) { throw "Build failed" }
+
+        # Verify executable
         $ExePath = Get-ChildItem -Recurse -Name "*.exe" | Select-Object -First 1
         if ($ExePath) {
             Write-Host "✓ Build successful: $ExePath" -ForegroundColor Green
-            
-            # Show file info
             $FileInfo = Get-Item $ExePath
             Write-Host "  Size: $([math]::Round($FileInfo.Length / 1KB, 2)) KB" -ForegroundColor Gray
             Write-Host "  Created: $($FileInfo.CreationTime)" -ForegroundColor Gray
         } else {
             Write-Host "⚠ Warning: Executable not found" -ForegroundColor Yellow
         }
-        
+
         Set-Location ..
-        
-    } catch {
+    }
+    catch {
         Write-Host "✗ Build failed: $($_.Exception.Message)" -ForegroundColor Red
         Set-Location ..
         continue
     }
 }
+
 
 Write-Host "`n=====================================================" -ForegroundColor Green
 Write-Host "Build Summary:" -ForegroundColor Green

@@ -1,8 +1,0 @@
-/home/engine/project/build_release/CMakeFiles/cj_lightsimstatus_code_chal_linux_release.dir
-/home/engine/project/build_release/CMakeFiles/package_build.dir
-/home/engine/project/build_release/CMakeFiles/edit_cache.dir
-/home/engine/project/build_release/CMakeFiles/rebuild_cache.dir
-/home/engine/project/build_release/CMakeFiles/list_install_components.dir
-/home/engine/project/build_release/CMakeFiles/install.dir
-/home/engine/project/build_release/CMakeFiles/install/local.dir
-/home/engine/project/build_release/CMakeFiles/install/strip.dir
