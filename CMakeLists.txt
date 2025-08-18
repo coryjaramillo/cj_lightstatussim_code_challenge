@@ -3,6 +3,14 @@ project(cj_lightsimstatus_code_chal)
 
 set(CMAKE_CXX_STANDARD 14)
 
+if(DEFINED ENV{CLION_HOME})
+    set(MINGW_BIN_PATH "$ENV{CLION_HOME}/bin/mingw/bin")
+else()
+    # Fallback: Manually specify your CLion directory version
+    set(MINGW_BIN_PATH "C:/Program Files/JetBrains/CLion 2025.1/bin/mingw/bin")
+endif()
+
+
 if(CMAKE_BUILD_TYPE STREQUAL "Debug_Simple")
     add_definitions(-DDEBUG_BUILD_SIMPLE)
 endif()
@@ -29,3 +37,16 @@ target_link_libraries(${PROJECT_NAME} PRIVATE ws2_32)
 target_include_directories(${PROJECT_NAME} PUBLIC
         ${CMAKE_SOURCE_DIR}/external
         ${CMAKE_SOURCE_DIR}/includes/${PROJECT_NAME})
+
+
+add_custom_command(TARGET cj_lightsimstatus_code_chal POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${MINGW_BIN_PATH}/libstdc++-6.dll"
+        "$<TARGET_FILE_DIR:cj_lightsimstatus_code_chal>/libstdc++-6.dll"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${MINGW_BIN_PATH}/libgcc_s_seh-1.dll"
+        "$<TARGET_FILE_DIR:cj_lightsimstatus_code_chal>/libgcc_s_seh-1.dll"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${MINGW_BIN_PATH}/libwinpthread-1.dll"
+        "$<TARGET_FILE_DIR:cj_lightsimstatus_code_chal>/libwinpthread-1.dll"
+)
