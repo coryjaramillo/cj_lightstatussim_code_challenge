@@ -27,8 +27,6 @@ CMAKE_BUILD_TYPE:STRING=Debug_Simple
 //Enable colored diagnostics throughout.
 CMAKE_COLOR_DIAGNOSTICS:BOOL=ON
 
-CMAKE_CONFIGURATION_TYPES:STRING=Debug_Simple;Debug_Verbose;Debug_All;Release
-
 //CXX compiler
 CMAKE_CXX_COMPILER:FILEPATH=C:/Program Files/JetBrains/CLion 2025.1/bin/mingw/bin/g++.exe
 

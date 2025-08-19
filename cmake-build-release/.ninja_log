@@ -1,5 +1,4 @@
 # ninja log v6
-5	12808	7772714092949955	CMakeFiles/cj_lightsimstatus_code_chal.dir/main.cpp.obj	fc2f3ff323ec2083
-10	18552	7772714092991049	CMakeFiles/cj_lightsimstatus_code_chal.dir/src/HomeLights.cpp.obj	55a933a7120df3ab
-18552	19003	7772714278411968	cj_lightsimstatus_code_chal.exe	5f79815c43a713a
-2	10	7772714078848361	clean	a931c57e3a3bd107
+4	12339	7772760077145563	CMakeFiles/cj_lightsimstatus_code_chal.dir/main.cpp.obj	fc2f3ff323ec2083
+9	17526	7772760077199627	CMakeFiles/cj_lightsimstatus_code_chal.dir/src/HomeLights.cpp.obj	55a933a7120df3ab
+17527	17765	7772760252363191	cj_lightsimstatus_code_chal.exe	5f79815c43a713a
