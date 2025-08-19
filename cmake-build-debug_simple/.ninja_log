@@ -1,0 +1,4 @@
+# ninja log v6
+3	7345	7771870080280426	CMakeFiles/cj_lightsimstatus_code_chal.dir/main.cpp.obj	287dc99369677492
+9	10657	7771870080345565	CMakeFiles/cj_lightsimstatus_code_chal.dir/src/HomeLights.cpp.obj	1ce03ed4e2bde1e7
+10657	21933	7771870186820518	cj_lightsimstatus_code_chal.exe	321df4adac9b5fb1
