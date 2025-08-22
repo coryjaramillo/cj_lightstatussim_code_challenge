@@ -35,22 +35,22 @@ cd cj_lightstatussim_code_challenge
 - [ ]  `Debug_Simple`
     - [ ]  `Name: Debug_Simple`
     - [ ]  `Build type: Debug`
-    - [ ]  `Build directory: build\debug_simple`
+    - [ ]  `Build directory: cmake-build-debug_simple`
     - [ ]  `Leave all other profile settings to default`
 - [ ]  `Debug_Verbose`
     - [ ]  `Name: Debug_Verbose`
     - [ ]  `Build type: Debug`
-    - [ ]  `Build directory: build\debug_verbose`
+    - [ ]  `Build directory: cmake-build-debug_verbose`
     - [ ]  `Leave all other profile settings to default`
 - [ ]  `Debug_All`
     - [ ]  `Name: Debug_All`
     - [ ]  `Build type: Debug`
-    - [ ]  `Build directory: build\debug_all`
+    - [ ]  `Build directory: cmake-build-debug_all`
     - [ ]  `Leave all other profile settings to default`
 - [ ]  `Release`
     - [ ]  `Name: Release`
     - [ ]  `Build type: Release`
-    - [ ]  `Build directory: build\release`
+    - [ ]  `Build directory: cmake-build-release`
     - [ ]  `Leave all other profile settings to default`
 3. [ ]  Click Apply.
 4. [ ]  Click OK.
