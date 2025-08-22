@@ -1,3 +1,0 @@
-E:/CLionProjects/cj_lightstatussim_code_challenge/cmake-build-debug_verbose/CMakeFiles/cj_lightsimstatus_code_chal.dir
-E:/CLionProjects/cj_lightstatussim_code_challenge/cmake-build-debug_verbose/CMakeFiles/edit_cache.dir
-E:/CLionProjects/cj_lightstatussim_code_challenge/cmake-build-debug_verbose/CMakeFiles/rebuild_cache.dir

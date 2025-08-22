@@ -186,7 +186,7 @@ nlohmann::json HomeLights::queryLightsAPI(const std::string &query) {
         std::cout << "Query String Builder: " << queryString << std::endl;
 #endif
         // send the query using Get http method
-        auto res = client.Get(queryString.c_str());
+        auto res = client.Get(queryString);
 
         // validate connection and result
         if (isConnectionValid() && res->status == 200) {
