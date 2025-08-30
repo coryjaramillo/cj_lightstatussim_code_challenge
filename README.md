@@ -143,6 +143,87 @@ cd cj_lightstatussim_code_challenge
 
 ---
 
+### Test n: Get All Light States
+_Get all existing lights and their states._
+##### Starting the Code Challenge Application will automatically output the light states.
+- [ ]  _Verify that your Code Challenge Execution is displaying at least the following output:_
+```json
+[
+    {
+        "id": "2c85bb59-c136-49f1-a429-f02f52b6c765",
+        "name": "Pantry Light",
+        "room": "Kitchen",
+        "on": false,
+        "brightness": 0
+    },
+    {
+        "id": "56a00ec5-e3d5-4a6b-a2cf-6d88c8f6464c",
+        "name": "Office Sconce 1",
+        "room": "Office",
+        "on": true,
+        "brightness": 7
+    },
+    {
+        "id": "edc1b691-a5af-4524-9b57-80341d90bfa2",
+        "name": "Office Sconce 2",
+        "room": "Office",
+        "on": true,
+        "brightness": 14
+    },
+    {
+        "id": "f06b0ed2-cc50-4edd-a0f8-5c98a3c9d151",
+        "name": "Living Room Lamp Left",
+        "room": "Living Room",
+        "on": true,
+        "brightness": 95
+    },
+    {
+        "id": "2ed8eb8e-e38b-4f86-8b9d-cbaf37be7275",
+        "name": "Kitchen Overheads",
+        "room": "Kitchen",
+        "on": false,
+        "brightness": 0
+    },
+    {
+        "id": "af80e5c2-b235-471d-8df9-490703699eda",
+        "name": "Kitchen Chandelier",
+        "room": "Kitchen",
+        "on": false,
+        "brightness": 0
+    },
+    {
+        "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+        "name": "Office Downlights",
+        "room": "Office",
+        "on": true,
+        "brightness": 45
+    },
+    {
+        "id": "1b1920d5-22f1-43aa-9d35-371b2075d33d",
+        "name": "Porch Light",
+        "room": "Porch",
+        "on": false,
+        "brightness": 39
+    },
+    {
+        "id": "6ff183b0-710d-40de-94a8-81584d8ae3e8",
+        "name": "String Lights",
+        "room": "Back Yard",
+        "on": false,
+        "brightness": 47
+    },
+    {
+        "id": "ad7e8bb4-ff0a-4b9f-b676-e94baf878e8f",
+        "name": "Living Room Lamp Right",
+        "room": "Living Room",
+        "on": true,
+        "brightness": 95
+    }
+]
+```
+
+---
+
 ### Test 1: Turn the Light ON
 
 - [ ]  In the simulator's UI or via your application, send the command to turn the light ON.
@@ -158,6 +239,146 @@ cd cj_lightstatussim_code_challenge
 - [ ]  Verify that the simulator reflects the light as OFF.
 - [ ]  Check that your application correctly updates and displays the OFF state.
 - [ ]  [ ] _Add any additional verification or steps here._
+
+---
+
+### Test n: Change Light Name
+_Change the name of a current, existing light._
+- [ ]  _Describe the goal or expected result of the test._
+- [ ]  _Step 1_
+- [ ]  _Step 2_
+- [ ]  _Step 3_
+- [ ]  [ ] _Additional steps or notes_
+
+---
+
+### Test n: Change Light Room
+_Change the room location of the light._
+- [ ]  _Describe the goal or expected result of the test._
+- [ ]  _Step 1_
+- [ ]  _Step 2_
+- [ ]  _Step 3_
+- [ ]  [ ] _Additional steps or notes_
+
+---
+
+### Test n: Change Light Brightness
+_Change the brightness of the light._
+- [ ]  _Describe the goal or expected result of the test._
+- [ ]  _Step 1_
+- [ ]  _Step 2_
+- [ ]  _Step 3_
+- [ ]  [ ] _Additional steps or notes_
+
+---
+
+### Test n: Add New Lights
+_Add 2 new lights to the house._
+- [ ]  _Describe the goal or expected result of the test._
+- [ ]  _Step 1_
+- [ ]  _Step 2_
+- [ ]  _Step 3_
+- [ ]  [ ] _Additional steps or notes_
+
+---
+
+### Test n: Bulk Light Info Change 1
+_Change the name and on/off status of a light._
+- [ ]  _Describe the goal or expected result of the test._
+- [ ]  _Step 1_
+- [ ]  _Step 2_
+- [ ]  _Step 3_
+- [ ]  [ ] _Additional steps or notes_
+
+---
+
+### Test n: Bulk Light Info Change 2
+_Change the name and room of a light._
+- [ ]  _Describe the goal or expected result of the test._
+- [ ]  _Step 1_
+- [ ]  _Step 2_
+- [ ]  _Step 3_
+- [ ]  [ ] _Additional steps or notes_
+
+---
+
+### Test n: Bulk Light Info Change 3
+_Change the name and brightness of a light._
+- [ ]  _Describe the goal or expected result of the test._
+- [ ]  _Step 1_
+- [ ]  _Step 2_
+- [ ]  _Step 3_
+- [ ]  [ ] _Additional steps or notes_
+
+---
+
+### Test n: Bulk Light Info Change 4
+_Change the room and on/off status of a light._
+- [ ]  _Describe the goal or expected result of the test._
+- [ ]  _Step 1_
+- [ ]  _Step 2_
+- [ ]  _Step 3_
+- [ ]  [ ] _Additional steps or notes_
+
+---
+
+### Test n: Bulk Light Info Change 5
+_Change the name and brightness status of a light._
+- [ ]  _Describe the goal or expected result of the test._
+- [ ]  _Step 1_
+- [ ]  _Step 2_
+- [ ]  _Step 3_
+- [ ]  [ ] _Additional steps or notes_
+
+---
+
+### Test n: Bulk Light Info Change 6
+_Change the on/off status and brightness of a light._
+- [ ]  _Describe the goal or expected result of the test._
+- [ ]  _Step 1_
+- [ ]  _Step 2_
+- [ ]  _Step 3_
+- [ ]  [ ] _Additional steps or notes_
+
+---
+
+### Test n: Bulk Light Info Change 7
+_Change the name, room, and on/off status of a light._
+- [ ]  _Describe the goal or expected result of the test._
+- [ ]  _Step 1_
+- [ ]  _Step 2_
+- [ ]  _Step 3_
+- [ ]  [ ] _Additional steps or notes_
+
+---
+
+### Test n: Bulk Light Info Change 8
+_Change the name, room, and brightness of a light._
+- [ ]  _Describe the goal or expected result of the test._
+- [ ]  _Step 1_
+- [ ]  _Step 2_
+- [ ]  _Step 3_
+- [ ]  [ ] _Additional steps or notes_
+
+---
+
+### Test n: Bulk Light Info Change 9
+_Change the name, room, on/off status, and brightness of a light._
+- [ ]  _Describe the goal or expected result of the test._
+- [ ]  _Step 1_
+- [ ]  _Step 2_
+- [ ]  _Step 3_
+- [ ]  [ ] _Additional steps or notes_
+
+---
+
+### Test n: Remove a Light
+_Remove a light from the existing lights._
+- [ ]  _Describe the goal or expected result of the test._
+- [ ]  _Step 1_
+- [ ]  _Step 2_
+- [ ]  _Step 3_
+- [ ]  [ ] _Additional steps or notes_
 
 ---
 
@@ -182,6 +403,26 @@ _Starting the Code Challenge Application with only the Light Simulator Browser r
 
 ### Test n: Failed Code Challenge Start 3
 _Starting the Code Challenge Application with only the LightSimulator Executable running, but not the Light Simulator Browser._
+- [ ]  _Describe the goal or expected result of the test._
+- [ ]  _Step 1_
+- [ ]  _Step 2_
+- [ ]  _Step 3_
+- [ ]  [ ] _Additional steps or notes_
+
+---
+
+### Test n: Failed Code Challenge Running 1
+_While the Code Challenge Application, LightSimulator Executable, and the Light Simulator Browser are running, then the Light Simulator Browser only is closed._
+- [ ]  _Describe the goal or expected result of the test._
+- [ ]  _Step 1_
+- [ ]  _Step 2_
+- [ ]  _Step 3_
+- [ ]  [ ] _Additional steps or notes_
+
+---
+
+### Test n: Failed Code Challenge Running 2
+_While the Code Challenge Application, LightSimulator Executable, and the Light Simulator Browser are running, then the LightSimulator Executable only is closed._
 - [ ]  _Describe the goal or expected result of the test._
 - [ ]  _Step 1_
 - [ ]  _Step 2_
