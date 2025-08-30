@@ -1,10 +1,14 @@
 # Light Status Simulator Coding Challenge
 
 A C++ software project to interact with the [Josh.ai LightSimulator](https://github.com/jstarllc/JoshCodingChallenge/releases/tag/v1.0) via API, demonstrating integration and control logic. Developed using CLion 2025.2 on Windows 11.
+
+---
+
 ## Authors
 
 - Cory Jaramillo - cory.jaramillo8@gmail.com
 
+---
 
 ## Prerequisites
 
@@ -14,6 +18,8 @@ A C++ software project to interact with the [Josh.ai LightSimulator](https://git
 - [ ]  MinGW compiler 11.0w64 or greater (also comes bundled with CLion)
 - [ ]  Git (recommended for cloning the repository)
 - [ ]  [Josh.ai LightSimulator](https://github.com/jstarllc/JoshCodingChallenge/releases/tag/v1.0) executable for Windows
+
+---
 
 ## Run Locally
 
@@ -28,34 +34,36 @@ cd cj_lightstatussim_code_challenge
 4. [ ]  Open CLion.
 5. [ ]  Go to `File > Open` and select the root project folder: "/cj_lightstatussim_code_challenge".
 
-## Build Instructions
+---
 
-1. [ ]  In CLion, navigate to `File > Settings > Build, Execution, Deployment > CMake`.
+## CLion Build Instructions
+
+1. [ ]  Open the project in CLion.
+2. [ ]  In CLion, navigate to `File > Settings > Build, Execution, Deployment > CMake`.
 2. [ ]  Add these four CMake build profiles:
 - [ ]  `Debug_Simple`
     - [ ]  `Name: Debug_Simple`
     - [ ]  `Build type: Debug`
-    - [ ]  `Build directory: cmake-build-debug_simple`
     - [ ]  `Leave all other profile settings to default`
 - [ ]  `Debug_Verbose`
     - [ ]  `Name: Debug_Verbose`
     - [ ]  `Build type: Debug`
-    - [ ]  `Build directory: cmake-build-debug_verbose`
     - [ ]  `Leave all other profile settings to default`
 - [ ]  `Debug_All`
     - [ ]  `Name: Debug_All`
     - [ ]  `Build type: Debug`
-    - [ ]  `Build directory: cmake-build-debug_all`
     - [ ]  `Leave all other profile settings to default`
 - [ ]  `Release`
     - [ ]  `Name: Release`
     - [ ]  `Build type: Release`
-    - [ ]  `Build directory: cmake-build-release`
     - [ ]  `Leave all other profile settings to default`
 3. [ ]  Click Apply.
 4. [ ]  Click OK.
 5. [ ]  Set your active build profile in the CLion top-right dropdown.
 6. [ ]  Click **Build** to build the project for the currently selected profile.
+
+---
+
 ## Usage/Examples
 
 - Ensure the LightSimulator.exe is running.
@@ -76,15 +84,62 @@ cd cj_lightstatussim_code_challenge
 ## Testing
 
 ### Test Setup
+- [ ]  [Verify LightSimulator Executable Setup](#lightsimulator-executable-setup)
+- [ ]  [Verify Light Simulator Browser Setup](#light-simulator-browser-setup)
+  _If you start the browser before the executale, you will need to refresh the browser to connect to the executable._
+- [ ]  [Verify Code Challenge Execution](#code-challenge-execution)
+  - [ ]  [Option 1](#option-1)
+  -    _OR_
+  - [ ]  [Option 2](#option-2)
 
-- [ ]  Launch LightSimulator.exe.  
+#### LightSimulator Executable Setup
+- [ ]  Open File Explorer.
+- [ ]  Locate LightSimulator folder on your system.
+- [ ]  Launch LightSimulator_windows_amd64.exe.  
   _If you do not have the LightSimulator downloaded, see the [Run Locally](#run-locally) section for download and installation steps._
-- [ ]  Open your browser and go to http://localhost:8080 to confirm the simulator is running and ready.
+- [ ]  Validate the LightSimulator is running by locating an open terminal window with at least the following at the beginning of the output:
+  ```sh
+   [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+   
+   [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+    - using env:   export GIN_MODE=release
+    - using code:  gin.SetMode(gin.ReleaseMode)
+   
+   [GIN-debug] GET    /static/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+   [GIN-debug] HEAD   /static/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+   [GIN-debug] GET    /lights                   --> main.GetLights (4 handlers)
+   [GIN-debug] GET    /lights/:id               --> main.GetLightByID (4 handlers)
+   [GIN-debug] POST   /lights                   --> main.AddLight (4 handlers)
+   [GIN-debug] DELETE /lights/:id               --> main.DeleteLightByID (4 handlers)
+   [GIN-debug] PUT    /lights/:id               --> main.UpdateLightByID (4 handlers)
+   [GIN-debug] GET    /                         --> main.main.func1 (4 handlers)
+   [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+   Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+   [GIN-debug] Listening and serving HTTP on :8080
+  ```
+
+#### Light Simulator Browser Setup
+- [ ]  Open your browser.
+- [ ]  Go to http://localhost:8080.
+- [ ]  Verify the simulator is running and ready.
+
+#### Code Challenge Execution
+##### Option #1
 - [ ]  Open the project in CLion.
+- [ ]  Verify that CLion is configured with the 4 needed build profiles
+  - [ ] `cmake-build-debug-simple`
+  - [ ] `cmake-build-debug-verbose`
+  - [ ] `cmake-build-debug-all`
+  - [ ] `cmake-build-release`
+  _If you do not have all 4 of the above build profiles, see [CLion Build Instructions](#clion-build-instructions) for build setup._
 - [ ]  Select your desired build profile.
 - [ ]  Build and run your project from CLion so it's active and able to interact with the simulator.
-- [ ]  [ ] _Add any additional environment or dependency setup here._
 
+##### Option #2
+- [ ]  Open File Explorer.
+- [ ]  Navigate to the desired build folder.
+- [ ]  Run the build's executable.
+- [ ]  Verify the executable is running by locating the terminal pop-up window.
 
 ---
 
@@ -106,30 +161,34 @@ cd cj_lightstatussim_code_challenge
 
 ---
 
-### Test 3: Query Light STATUS
-
-- [ ]  Use your application (or the API, if supported) to request the current light STATUS.
-- [ ]  Confirm that the returned/status value matches the simulator's display.
-- [ ]  [ ] _Add any custom UI/API result checks as needed._
-
----
-
-### Test 4: Handle Invalid Command
-
-- [ ]  Attempt to send an invalid or malformed command from your application (e.g., a typo or an unsupported request).
-- [ ]  Check that your application captures and displays an appropriate error message.
-- [ ]  Verify that the simulator remains stable and no unexpected state changes occur.
-- [ ]  [ ] _Add any further test details or variations here._
+### Test n: Failed Code Challenge Start 1
+_Starting the Code Challenge Application before the LightSimulator Executable and Light Simulator Browser._
+- [ ]  _Step 1_
+- [ ]  _Step 2_
+- [ ]  _Step 3_
+- [ ]  [ ] _Additional steps or notes_
 
 ---
 
-### Test 5: [New Test Template]
-
+### Test n: Failed Code Challenge Start 2
+_Starting the Code Challenge Application with only the Light Simulator Browser running, but not the LightSimulator Executable._
 - [ ]  _Describe the goal or expected result of the test._
 - [ ]  _Step 1_
 - [ ]  _Step 2_
 - [ ]  _Step 3_
 - [ ]  [ ] _Additional steps or notes_
+
+---
+
+### Test n: Failed Code Challenge Start 3
+_Starting the Code Challenge Application with only the LightSimulator Executable running, but not the Light Simulator Browser._
+- [ ]  _Describe the goal or expected result of the test._
+- [ ]  _Step 1_
+- [ ]  _Step 2_
+- [ ]  _Step 3_
+- [ ]  [ ] _Additional steps or notes_
+
+---
 
 ## FAQ
 
