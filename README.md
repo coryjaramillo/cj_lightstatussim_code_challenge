@@ -42,21 +42,21 @@ cd cj_lightstatussim_code_challenge
 2. [ ]  In CLion, navigate to `File > Settings > Build, Execution, Deployment > CMake`.
 2. [ ]  Add these four CMake build profiles:
 - [ ]  `Debug_Simple`
-    - [ ]  `Name: Debug_Simple`
-    - [ ]  `Build type: Debug`
-    - [ ]  `Leave all other profile settings to default`
+   - [ ]  `Name: Debug_Simple`
+   - [ ]  `Build type: Debug`
+   - [ ]  `Leave all other profile settings to default`
 - [ ]  `Debug_Verbose`
-    - [ ]  `Name: Debug_Verbose`
-    - [ ]  `Build type: Debug`
-    - [ ]  `Leave all other profile settings to default`
+   - [ ]  `Name: Debug_Verbose`
+   - [ ]  `Build type: Debug`
+   - [ ]  `Leave all other profile settings to default`
 - [ ]  `Debug_All`
-    - [ ]  `Name: Debug_All`
-    - [ ]  `Build type: Debug`
-    - [ ]  `Leave all other profile settings to default`
+   - [ ]  `Name: Debug_All`
+   - [ ]  `Build type: Debug`
+   - [ ]  `Leave all other profile settings to default`
 - [ ]  `Release`
-    - [ ]  `Name: Release`
-    - [ ]  `Build type: Release`
-    - [ ]  `Leave all other profile settings to default`
+   - [ ]  `Name: Release`
+   - [ ]  `Build type: Release`
+   - [ ]  `Leave all other profile settings to default`
 3. [ ]  Click Apply.
 4. [ ]  Click OK.
 5. [ ]  Set your active build profile in the CLion top-right dropdown.
@@ -88,9 +88,9 @@ cd cj_lightstatussim_code_challenge
 - [ ]  [Verify Light Simulator Browser Setup](#light-simulator-browser-setup)
   _If you start the browser before the executale, you will need to refresh the browser to connect to the executable._
 - [ ]  [Verify Code Challenge Execution](#code-challenge-execution)
-  - [ ]  [Option 1](#option-1)
-  -    _OR_
-  - [ ]  [Option 2](#option-2)
+- [ ]  [Option 1](#option-1)
+-    _OR_
+- [ ]  [Option 2](#option-2)
 
 #### LightSimulator Executable Setup
 - [ ]  Open File Explorer.
@@ -127,10 +127,10 @@ cd cj_lightstatussim_code_challenge
 ##### Option #1
 - [ ]  Open the project in CLion.
 - [ ]  Verify that CLion is configured with the 4 needed build profiles
-  - [ ] `cmake-build-debug-simple`
-  - [ ] `cmake-build-debug-verbose`
-  - [ ] `cmake-build-debug-all`
-  - [ ] `cmake-build-release`
+- [ ] `cmake-build-debug-simple`
+- [ ] `cmake-build-debug-verbose`
+- [ ] `cmake-build-debug-all`
+- [ ] `cmake-build-release`
   _If you do not have all 4 of the above build profiles, see [CLion Build Instructions](#clion-build-instructions) for build setup._
 - [ ]  Select your desired build profile.
 - [ ]  Build and run your project from CLion so it's active and able to interact with the simulator.
@@ -141,293 +141,392 @@ cd cj_lightstatussim_code_challenge
 - [ ]  Run the build's executable.
 - [ ]  Verify the executable is running by locating the terminal pop-up window.
 
----
-
-### Test n: Get All Light States
-_Get all existing lights and their states._
-##### Starting the Code Challenge Application will automatically output the light states.
-- [ ]  _Verify that your Code Challenge Execution is displaying at least the following output:_
-```json
-[
-    {
-        "id": "2c85bb59-c136-49f1-a429-f02f52b6c765",
-        "name": "Pantry Light",
-        "room": "Kitchen",
-        "on": false,
-        "brightness": 0
-    },
-    {
-        "id": "56a00ec5-e3d5-4a6b-a2cf-6d88c8f6464c",
-        "name": "Office Sconce 1",
-        "room": "Office",
-        "on": true,
-        "brightness": 7
-    },
-    {
-        "id": "edc1b691-a5af-4524-9b57-80341d90bfa2",
-        "name": "Office Sconce 2",
-        "room": "Office",
-        "on": true,
-        "brightness": 14
-    },
-    {
-        "id": "f06b0ed2-cc50-4edd-a0f8-5c98a3c9d151",
-        "name": "Living Room Lamp Left",
-        "room": "Living Room",
-        "on": true,
-        "brightness": 95
-    },
-    {
-        "id": "2ed8eb8e-e38b-4f86-8b9d-cbaf37be7275",
-        "name": "Kitchen Overheads",
-        "room": "Kitchen",
-        "on": false,
-        "brightness": 0
-    },
-    {
-        "id": "af80e5c2-b235-471d-8df9-490703699eda",
-        "name": "Kitchen Chandelier",
-        "room": "Kitchen",
-        "on": false,
-        "brightness": 0
-    },
-    {
-        "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
-        "name": "Office Downlights",
-        "room": "Office",
-        "on": true,
-        "brightness": 45
-    },
-    {
-        "id": "1b1920d5-22f1-43aa-9d35-371b2075d33d",
-        "name": "Porch Light",
-        "room": "Porch",
-        "on": false,
-        "brightness": 39
-    },
-    {
-        "id": "6ff183b0-710d-40de-94a8-81584d8ae3e8",
-        "name": "String Lights",
-        "room": "Back Yard",
-        "on": false,
-        "brightness": 47
-    },
-    {
-        "id": "ad7e8bb4-ff0a-4b9f-b676-e94baf878e8f",
-        "name": "Living Room Lamp Right",
-        "room": "Living Room",
-        "on": true,
-        "brightness": 95
-    }
-]
+#### Obtain lights and their states
+_Steps to execute commands in the Light Simulator Browser interface to obtain light info. All steps below are performed in the simulator UI._
+- [ ]  Verify that the Light Simulator Browser is running.
+   - _If is it not running, reference [LightSimulator Executable](#lightsimulator-executable-setup) and [Light Simulator Browser](#light-simulator-browser-setup)._
+- [ ]  Click "Get all lights" button.
+- ![Image showing a highlighted part to indicate where the "Get all lights" button is located on the simulator UI.](assets/simulator_UI/get_all_lights.png)
+- [ ]  Click "Send".
+- ![Image showing a highlighted part to indicate where the "Send" button is located on the simulator UI.](assets/simulator_UI/send_button.png)
+- [ ]  Copy the "id" value of any light.
+- ![Image of the json style output in the simulator UI after clicking "Get all lights" then "Send".](assets/simulator_UI/get_all_lights_output.png)
+- [ ]  Click "Get light state".
+- ![Image showing a highlighted part to indicate where the "Get light state" button is located on the simulator UI.](assets/simulator_UI/get_light_state.png)
+- [ ]  Paste the copied value in place of "<id>" on the URL line. See example below.
+```http request
+/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8
 ```
+- ![Image of the URL line populated with "/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8".](assets/simulator_UI/URL_populated.png)
+- [ ]  Click "Send".
+- ![Image of the URL line populated with "/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8" and the "Send" button.](assets/simulator_UI/URL_populated_with_send_button.png)
+- [ ]  Verify that the output in the Light Simulator Browser interface looks like below.
+```json
+{
+  "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+  "name": "Office Downlights",
+  "room": "Office",
+  "on": true,
+  "brightness": 114
+}
+```
+- ![Image of sending the query to get the light state and the output results in the simulator UI listed below the "Send" button.](assets/simulator_UI/send_get_light_state_output.png)
 
 ---
 
-### Test 1: Turn the Light ON
-
-- [ ]  In the simulator's UI or via your application, send the command to turn the light ON.
-- [ ]  Verify that the simulator reflects the light as ON.
-- [ ]  Check that your application correctly updates and displays the new state.
-- [ ]  [ ] _Add any additional verification or steps here._
+### Test 1: Get All Light States
+_Get all existing lights and their states._
+##### Starting the [Code Challenge](#code-challenge-execution) Application will automatically output the light states.
+#### EXPECTED RESULT:
+- [ ]  _Verify that your Code Challenge Execution is displaying at least the following output:_
+- ![Image of the program start that shows all light states upon starting the api and simulator UI.](assets/terminal_UI/get_all_light_states_application_start.png)
 
 ---
 
 ### Test 2: Turn the Light OFF
-
-- [ ]  In the simulator's UI or via your application, send the command to turn the light OFF.
-- [ ]  Verify that the simulator reflects the light as OFF.
-- [ ]  Check that your application correctly updates and displays the OFF state.
-- [ ]  [ ] _Add any additional verification or steps here._
+_Turn off any light in the light system._
+- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
+- [ ]  In the simulator UI, Click "Turn off".
+- ![Image showing a highlighted part to indicate where the "Turn off" button is located on the simulator UI.](assets/simulator_UI/turn_off.png)
+- [ ]  Paste the copied value in place of "<id>" on the URL line. See example below.
+```http request
+/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8
+```
+- ![Image of the URL line populated with "/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8".](assets/simulator_UI/URL_populated.png)
+- [ ]  In the simulator UI, click "Send".
+- ![Image showing a highlighted part to indicate where the "Send" button is located on the simulator UI.](assets/simulator_UI/send_button.png)
+#### EXPECTED RESULTS:
+- [ ]  Verify that the simulator reflects the light as OFF (false). See example below.
+```json
+{
+   "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+   "name": "Office Downlights",
+   "room": "Office",
+   "on": false,
+   "brightness": 114
+}
+```
+- ![Image showing the output in the simulator UI of successfully turning off a light using the UI.](assets/simulator_UI/turn_off_output.png)
+- [ ]  Check that your application correctly updates and displays the new state.
+```json
+{
+   "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+   "on": false
+}
+```
+- ![Image showing the output in the terminal UI of successfully turning off a light using the UI.](assets/terminal_UI/turn_off_output.png)
 
 ---
 
-### Test n: Change Light Name
+### Test 3: Turn the Light ON
+_Turn on any light in the light system._
+- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
+- [ ]  In the simulator UI, Click "Turn on".
+- ![Image showing a highlighted part to indicate where the "Turn on" button is located on the simulator UI.](assets/simulator_UI/turn_on.png)
+- [ ]  Paste the copied value in place of "<id>" on the URL line. See example below.
+```http request
+/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8
+```
+- ![Image of the URL line populated with "/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8".](assets/simulator_UI/URL_populated.png)
+- [ ]  In the simulator UI, click "Send".
+- ![Image showing a highlighted part to indicate where the "Send" button is located on the simulator UI.](assets/simulator_UI/send_button.png)
+#### EXPECTED RESULTS:
+- [ ]  Verify that the simulator reflects the light as ON (true). See example below.
+```json
+{
+   "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+   "name": "Office Downlights",
+   "room": "Office",
+   "on": true,
+   "brightness": 114
+}
+```
+- ![Image showing the output in the simulator UI of successfully turning on a light using the UI.](assets/simulator_UI/turn_on_output.png)
+- [ ]  Check that your application correctly updates and displays the new state.
+```json
+{
+   "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+   "on": true
+}
+```
+- ![Image showing the output in the terminal UI of successfully turning on a light using the UI.](assets/terminal_UI/turn_on_output.png)
+
+---
+
+### Test 4: Change Light Name
 _Change the name of a current, existing light._
-- [ ]  _Describe the goal or expected result of the test._
-- [ ]  _Step 1_
-- [ ]  _Step 2_
-- [ ]  _Step 3_
-- [ ]  [ ] _Additional steps or notes_
+- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
+- [ ]  In the simulator UI, Click "Set name".
+- ![Image showing a highlighted part to indicate where the "Set name" button is located on the simulator UI.](assets/simulator_UI/set_name.png)
+- [ ]  Paste the copied value in place of "<id>" on the URL line. See example below.
+```http request
+/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8
+```
+- ![Image of the URL line populated with "/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8".](assets/simulator_UI/URL_populated.png)
+- [ ]  In the simulator UI, replace "new name" with "Office Desk Light" in the "Message Body".
+- ![Image of the message body showing a json input of "name" with "Office Desk Light" as the new data.](assets/simulator_UI/set_name_message_body_populated.png)
+- [ ]  In the simulator UI, click "Send".
+- ![Image showing a highlighted part to indicate where the "Send" button is located on the simulator UI.](assets/simulator_UI/send_button.png)
+#### EXPECTED RESULTS:
+- [ ]  Verify that the simulator reflects the light name as "Office Desk Light". See example below.
+```json
+{
+   "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+   "name": "Office Desk Light",
+   "room": "Office",
+   "on": true,
+   "brightness": 114
+}
+```
+- ![Image showing the output in the simulator UI of successfully changing the name of a light using the UI.](assets/simulator_UI/set_name_output.png)
+- [ ]  Check that your application correctly updates and displays the new state.
+```json
+{
+   "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+   "name": "Office Desk Light"
+}
+```
+- ![Image showing the output in the terminal UI of successfully changing the name of a light using the UI.](assets/terminal_UI/set_name_output.png)
 
 ---
 
-### Test n: Change Light Room
+### Test 5: Change Light Room
 _Change the room location of the light._
-- [ ]  _Describe the goal or expected result of the test._
-- [ ]  _Step 1_
-- [ ]  _Step 2_
-- [ ]  _Step 3_
-- [ ]  [ ] _Additional steps or notes_
+- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
+- [ ]  In the simulator UI, Click "Set room".
+- ![Image showing a highlighted part to indicate where the "Set room" button is located on the simulator UI.](assets/simulator_UI/set_room.png)
+- [ ]  Paste the copied value in place of "<id>" on the URL line. See example below.
+```http request
+/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8
+```
+- ![Image of the URL line populated with "/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8".](assets/simulator_UI/URL_populated.png)
+- [ ]  In the simulator UI, replace "new room" with "Main Office" in the "Message Body".
+- ![Image of the message body showing a json input of "room" with "Main Office" as the new data.](assets/simulator_UI/set_room_message_body_populated.png)
+- [ ]  In the simulator UI, click "Send".
+- - ![Image showing a highlighted part to indicate where the "Send" button is located on the simulator UI.](assets/simulator_UI/send_button.png)
+#### EXPECTED RESULTS:
+- [ ]  Verify that the simulator reflects the light room as "Main Office". See example below.
+```json
+{
+   "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+   "name": "Office Desk Light",
+   "room": "Main Office",
+   "on": true,
+   "brightness": 114
+}
+```
+- ![Image showing the output in the simulator UI of successfully changing the name of a room using the UI.](assets/simulator_UI/set_room_output.png)
+- [ ]  Check that your application correctly updates and displays the new state.
+```json
+{
+   "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+   "name": "Office Desk Light"
+}
+```
+- ![Image showing the output in the terminal UI of successfully changing the name of a room using the UI.](assets/terminal_UI/set_room_output.png)
 
 ---
 
-### Test n: Change Light Brightness
+### Test 6: Change Light Brightness
 _Change the brightness of the light._
-- [ ]  _Describe the goal or expected result of the test._
-- [ ]  _Step 1_
-- [ ]  _Step 2_
-- [ ]  _Step 3_
-- [ ]  [ ] _Additional steps or notes_
-
+- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
+- [ ]  In the simulator UI, Click "Set brightness".
+- ![Image showing a highlighted part to indicate where the "Set brightness" button is located on the simulator UI.](assets/simulator_UI/set_brightness.png)
+- [ ]  Paste the copied value in place of "<id>" on the URL line. See example below.
+```http request
+/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8
+```
+- ![Image of the URL line populated with "/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8".](assets/simulator_UI/URL_populated.png)
+- [ ]  In the simulator UI, replace brightness value with an integer from 0 to 255 in the "Message Body".
+- ![Image 1 of 3 of the message body showing a json input of "brightness" with a value in the range of 0 to 255 as the new data.](assets/simulator_UI/set_brightness_message_body_populated_1.png)
+- [ ]  In the simulator UI, click "Send".
+- ![Image showing a highlighted part to indicate where the "Send" button is located on the simulator UI.](assets/simulator_UI/send_button.png)
+- [ ]  Repeat the value change at least 3 times. I did 10, 255, and 78.
+- ![Image 1 of 3 of the message body showing a json input of "brightness" with a value in the range of 0 to 255 as the new data.](assets/simulator_UI/set_brightness_message_body_populated_1.png)
+- ![Image 2 of 3 of the message body showing a json input of "brightness" with a value in the range of 0 to 255 as the new data.](assets/simulator_UI/set_brightness_message_body_populated_2.png)
+- ![Image 3 of 3 of the message body showing a json input of "brightness" with a value in the range of 0 to 255 as the new data.](assets/simulator_UI/set_brightness_message_body_populated_3.png)
+#### EXPECTED RESULTS:
+- [ ]  Verify that the simulator reflects the "brightness" as your entered value. See example below.
+- ![Image showing the output in the simulator UI of successfully changing the brightness of a room 3 times using the UI.](assets/simulator_UI/set_brightness_all_3_outputs.png)
+- [ ]  Check that your application correctly updates and displays the new state for each change.
+##### _NOTE: Terminal output will show the values in human readable percentage of brightness._
+##### _Convert 0-255 to Percentage Equation: percentage = ._
+```json
+[
+   {
+      "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+      "brightness": 4
+   },
+   {
+      "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+      "brightness": 100
+   },
+   {
+      "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+      "brightness": 31
+   }
+]
+```
+- ![Image showing the output in the terminal UI of successfully changing the brightness of a room 3 times using the UI.](assets/terminal_UI/set_brightness_all_3_outputs.png)
+- 
 ---
 
-### Test n: Add New Lights
+### Test 7: Add New Lights
 _Add 2 new lights to the house._
 - [ ]  _Describe the goal or expected result of the test._
 - [ ]  _Step 1_
 - [ ]  _Step 2_
 - [ ]  _Step 3_
-- [ ]  [ ] _Additional steps or notes_
+#### EXPECTED RESULTS:
 
 ---
 
-### Test n: Bulk Light Info Change 1
+### Test 8: Bulk Light Info Change 1
 _Change the name and on/off status of a light._
-- [ ]  _Describe the goal or expected result of the test._
+- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
 - [ ]  _Step 1_
 - [ ]  _Step 2_
 - [ ]  _Step 3_
-- [ ]  [ ] _Additional steps or notes_
+#### EXPECTED RESULTS:
 
 ---
 
-### Test n: Bulk Light Info Change 2
+### Test 9: Bulk Light Info Change 2
 _Change the name and room of a light._
-- [ ]  _Describe the goal or expected result of the test._
+- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
 - [ ]  _Step 1_
 - [ ]  _Step 2_
 - [ ]  _Step 3_
-- [ ]  [ ] _Additional steps or notes_
+#### EXPECTED RESULTS:
 
 ---
 
-### Test n: Bulk Light Info Change 3
+### Test 10: Bulk Light Info Change 3
 _Change the name and brightness of a light._
-- [ ]  _Describe the goal or expected result of the test._
+- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
 - [ ]  _Step 1_
 - [ ]  _Step 2_
 - [ ]  _Step 3_
-- [ ]  [ ] _Additional steps or notes_
+#### EXPECTED RESULTS:
 
 ---
 
-### Test n: Bulk Light Info Change 4
+### Test 11: Bulk Light Info Change 4
 _Change the room and on/off status of a light._
-- [ ]  _Describe the goal or expected result of the test._
+- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
 - [ ]  _Step 1_
 - [ ]  _Step 2_
 - [ ]  _Step 3_
-- [ ]  [ ] _Additional steps or notes_
+#### EXPECTED RESULTS:
 
 ---
 
-### Test n: Bulk Light Info Change 5
+### Test 12: Bulk Light Info Change 5
 _Change the name and brightness status of a light._
-- [ ]  _Describe the goal or expected result of the test._
+- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
 - [ ]  _Step 1_
 - [ ]  _Step 2_
 - [ ]  _Step 3_
-- [ ]  [ ] _Additional steps or notes_
+#### EXPECTED RESULTS:
 
 ---
 
-### Test n: Bulk Light Info Change 6
+### Test 13: Bulk Light Info Change 6
 _Change the on/off status and brightness of a light._
-- [ ]  _Describe the goal or expected result of the test._
+- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
 - [ ]  _Step 1_
 - [ ]  _Step 2_
 - [ ]  _Step 3_
-- [ ]  [ ] _Additional steps or notes_
+#### EXPECTED RESULTS:
 
 ---
 
-### Test n: Bulk Light Info Change 7
+### Test 14: Bulk Light Info Change 7
 _Change the name, room, and on/off status of a light._
-- [ ]  _Describe the goal or expected result of the test._
+- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
 - [ ]  _Step 1_
 - [ ]  _Step 2_
 - [ ]  _Step 3_
-- [ ]  [ ] _Additional steps or notes_
+#### EXPECTED RESULTS:
 
 ---
 
-### Test n: Bulk Light Info Change 8
+### Test 15: Bulk Light Info Change 8
 _Change the name, room, and brightness of a light._
-- [ ]  _Describe the goal or expected result of the test._
+- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
 - [ ]  _Step 1_
 - [ ]  _Step 2_
 - [ ]  _Step 3_
-- [ ]  [ ] _Additional steps or notes_
+#### EXPECTED RESULTS:
 
 ---
 
-### Test n: Bulk Light Info Change 9
+### Test 16: Bulk Light Info Change 9
 _Change the name, room, on/off status, and brightness of a light._
-- [ ]  _Describe the goal or expected result of the test._
+- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
 - [ ]  _Step 1_
 - [ ]  _Step 2_
 - [ ]  _Step 3_
-- [ ]  [ ] _Additional steps or notes_
+#### EXPECTED RESULTS:
 
 ---
 
-### Test n: Remove a Light
+### Test 17: Remove a Light
 _Remove a light from the existing lights._
-- [ ]  _Describe the goal or expected result of the test._
+- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
 - [ ]  _Step 1_
 - [ ]  _Step 2_
 - [ ]  _Step 3_
-- [ ]  [ ] _Additional steps or notes_
+#### EXPECTED RESULTS:
 
 ---
 
-### Test n: Failed Code Challenge Start 1
+### Test 18: Failed Code Challenge Start 1
 _Starting the Code Challenge Application before the LightSimulator Executable and Light Simulator Browser._
 - [ ]  _Step 1_
 - [ ]  _Step 2_
 - [ ]  _Step 3_
-- [ ]  [ ] _Additional steps or notes_
+#### EXPECTED RESULTS:
 
 ---
 
-### Test n: Failed Code Challenge Start 2
+### Test 19: Failed Code Challenge Start 2
 _Starting the Code Challenge Application with only the Light Simulator Browser running, but not the LightSimulator Executable._
 - [ ]  _Describe the goal or expected result of the test._
 - [ ]  _Step 1_
 - [ ]  _Step 2_
 - [ ]  _Step 3_
-- [ ]  [ ] _Additional steps or notes_
+#### EXPECTED RESULTS:
 
 ---
 
-### Test n: Failed Code Challenge Start 3
+### Test 20: Failed Code Challenge Start 3
 _Starting the Code Challenge Application with only the LightSimulator Executable running, but not the Light Simulator Browser._
 - [ ]  _Describe the goal or expected result of the test._
 - [ ]  _Step 1_
 - [ ]  _Step 2_
 - [ ]  _Step 3_
-- [ ]  [ ] _Additional steps or notes_
+#### EXPECTED RESULTS:
 
 ---
 
-### Test n: Failed Code Challenge Running 1
+### Test 21: Failed Code Challenge Running 1
 _While the Code Challenge Application, LightSimulator Executable, and the Light Simulator Browser are running, then the Light Simulator Browser only is closed._
 - [ ]  _Describe the goal or expected result of the test._
 - [ ]  _Step 1_
 - [ ]  _Step 2_
 - [ ]  _Step 3_
-- [ ]  [ ] _Additional steps or notes_
+#### EXPECTED RESULTS:
 
 ---
 
-### Test n: Failed Code Challenge Running 2
+### Test 22: Failed Code Challenge Running 2
 _While the Code Challenge Application, LightSimulator Executable, and the Light Simulator Browser are running, then the LightSimulator Executable only is closed._
 - [ ]  _Describe the goal or expected result of the test._
 - [ ]  _Step 1_
 - [ ]  _Step 2_
 - [ ]  _Step 3_
-- [ ]  [ ] _Additional steps or notes_
+#### EXPECTED RESULTS:
 
 ---
 
