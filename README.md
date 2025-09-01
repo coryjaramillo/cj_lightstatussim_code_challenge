@@ -4,9 +4,17 @@ A C++ software project to interact with the [Josh.ai LightSimulator](https://git
 
 ---
 
+**====================================================================================================================**
+
+---
+
 ## Authors
 
 - Cory Jaramillo - cory.jaramillo8@gmail.com
+
+---
+
+**====================================================================================================================**
 
 ---
 
@@ -18,6 +26,10 @@ A C++ software project to interact with the [Josh.ai LightSimulator](https://git
 - [ ]  MinGW compiler 11.0w64 or greater (also comes bundled with CLion)
 - [ ]  Git (recommended for cloning the repository)
 - [ ]  [Josh.ai LightSimulator](https://github.com/jstarllc/JoshCodingChallenge/releases/tag/v1.0) executable for Windows
+
+---
+
+**====================================================================================================================**
 
 ---
 
@@ -36,31 +48,39 @@ cd cj_lightstatussim_code_challenge
 
 ---
 
+**====================================================================================================================**
+
+---
+
 ## CLion Build Instructions
 
 1. [ ]  Open the project in CLion.
 2. [ ]  In CLion, navigate to `File > Settings > Build, Execution, Deployment > CMake`.
 2. [ ]  Add these four CMake build profiles:
 - [ ]  `Debug_Simple`
-   - [ ]  `Name: Debug_Simple`
-   - [ ]  `Build type: Debug`
-   - [ ]  `Leave all other profile settings to default`
+    - [ ]  `Name: Debug_Simple`
+    - [ ]  `Build type: Debug`
+    - [ ]  `Leave all other profile settings to default`
 - [ ]  `Debug_Verbose`
-   - [ ]  `Name: Debug_Verbose`
-   - [ ]  `Build type: Debug`
-   - [ ]  `Leave all other profile settings to default`
+    - [ ]  `Name: Debug_Verbose`
+    - [ ]  `Build type: Debug`
+    - [ ]  `Leave all other profile settings to default`
 - [ ]  `Debug_All`
-   - [ ]  `Name: Debug_All`
-   - [ ]  `Build type: Debug`
-   - [ ]  `Leave all other profile settings to default`
+    - [ ]  `Name: Debug_All`
+    - [ ]  `Build type: Debug`
+    - [ ]  `Leave all other profile settings to default`
 - [ ]  `Release`
-   - [ ]  `Name: Release`
-   - [ ]  `Build type: Release`
-   - [ ]  `Leave all other profile settings to default`
+    - [ ]  `Name: Release`
+    - [ ]  `Build type: Release`
+    - [ ]  `Leave all other profile settings to default`
 3. [ ]  Click Apply.
 4. [ ]  Click OK.
 5. [ ]  Set your active build profile in the CLion top-right dropdown.
 6. [ ]  Click **Build** to build the project for the currently selected profile.
+
+---
+
+**====================================================================================================================**
 
 ---
 
@@ -78,10 +98,15 @@ cd cj_lightstatussim_code_challenge
 
 - At this point, you should see initial output in the CLion terminal when you run the application.
 
-```
+---
 
-```
+**====================================================================================================================**
+
+---
+
 ## Testing
+
+---
 
 ### Test Setup
 - [ ]  [Verify LightSimulator Executable Setup](#lightsimulator-executable-setup)
@@ -91,6 +116,8 @@ cd cj_lightstatussim_code_challenge
 - [ ]  [Option 1](#option-1)
 -    _OR_
 - [ ]  [Option 2](#option-2)
+
+---
 
 #### LightSimulator Executable Setup
 - [ ]  Open File Explorer.
@@ -118,20 +145,24 @@ cd cj_lightstatussim_code_challenge
    [GIN-debug] Listening and serving HTTP on :8080
   ```
 
+---
+
 #### Light Simulator Browser Setup
 - [ ]  Open your browser.
 - [ ]  Go to http://localhost:8080.
 - [ ]  Verify the simulator is running and ready.
 
+---
+
 #### Code Challenge Execution
 ##### Option #1
 - [ ]  Open the project in CLion.
 - [ ]  Verify that CLion is configured with the 4 needed build profiles
-- [ ] `cmake-build-debug-simple`
-- [ ] `cmake-build-debug-verbose`
-- [ ] `cmake-build-debug-all`
-- [ ] `cmake-build-release`
-  _If you do not have all 4 of the above build profiles, see [CLion Build Instructions](#clion-build-instructions) for build setup._
+  - [ ] `cmake-build-debug-simple`
+  - [ ] `cmake-build-debug-verbose`
+  - [ ] `cmake-build-debug-all`
+  - [ ] `cmake-build-release`
+###### _If you do not have all 4 of the above build profiles, see [CLion Build Instructions](#clion-build-instructions) for build setup._
 - [ ]  Select your desired build profile.
 - [ ]  Build and run your project from CLion so it's active and able to interact with the simulator.
 
@@ -141,10 +172,12 @@ cd cj_lightstatussim_code_challenge
 - [ ]  Run the build's executable.
 - [ ]  Verify the executable is running by locating the terminal pop-up window.
 
+---
+
 #### Obtain lights and their states
 _Steps to execute commands in the Light Simulator Browser interface to obtain light info. All steps below are performed in the simulator UI._
 - [ ]  Verify that the Light Simulator Browser is running.
-   - _If is it not running, reference [LightSimulator Executable](#lightsimulator-executable-setup) and [Light Simulator Browser](#light-simulator-browser-setup)._
+    - _If is it not running, reference [LightSimulator Executable](#lightsimulator-executable-setup) and [Light Simulator Browser](#light-simulator-browser-setup)._
 - [ ]  Click "Get all lights" button.
 - ![Image showing a highlighted part to indicate where the "Get all lights" button is located on the simulator UI.](assets/simulator_UI/get_all_lights.png)
 - [ ]  Click "Send".
@@ -199,15 +232,15 @@ _Turn off any light in the light system._
 - [ ]  Verify that the simulator reflects the light as OFF (false). See example below.
 ```json
 {
-   "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
-   "name": "Office Downlights",
-   "room": "Office",
-   "on": false,
-   "brightness": 114
+  "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+  "name": "Office Downlights",
+  "room": "Office",
+  "on": false,
+  "brightness": 114
 }
 ```
 - ![Image showing the output in the simulator UI of successfully turning off a light using the UI.](assets/simulator_UI/turn_off_output.png)
-- [ ]  Check that your application correctly updates and displays the new state.
+- [ ]  Check that your application terminal correctly updates and displays the new state.
 ```json
 {
    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
@@ -242,7 +275,7 @@ _Turn on any light in the light system._
 }
 ```
 - ![Image showing the output in the simulator UI of successfully turning on a light using the UI.](assets/simulator_UI/turn_on_output.png)
-- [ ]  Check that your application correctly updates and displays the new state.
+- [ ]  Check that your application terminal correctly updates and displays the new state.
 ```json
 {
    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
@@ -279,7 +312,7 @@ _Change the name of a current, existing light._
 }
 ```
 - ![Image showing the output in the simulator UI of successfully changing the name of a light using the UI.](assets/simulator_UI/set_name_output.png)
-- [ ]  Check that your application correctly updates and displays the new state.
+- [ ]  Check that your application terminal correctly updates and displays the new state.
 ```json
 {
    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
@@ -316,7 +349,7 @@ _Change the room location of the light._
 }
 ```
 - ![Image showing the output in the simulator UI of successfully changing the name of a room using the UI.](assets/simulator_UI/set_room_output.png)
-- [ ]  Check that your application correctly updates and displays the new state.
+- [ ]  Check that your application terminal correctly updates and displays the new state.
 ```json
 {
    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
@@ -350,7 +383,7 @@ _Change the brightness of the light._
 - ![Image showing the output in the simulator UI of successfully changing the brightness of a room 3 times using the UI.](assets/simulator_UI/set_brightness_all_3_outputs.png)
 - [ ]  Check that your application correctly updates and displays the new state for each change.
 ##### _NOTE: Terminal output will show the values in human readable percentage of brightness._
-##### _Convert 0-255 to Percentage Equation: percentage = ._
+##### _Convert 0-255 to Percentage Equation: percentage = value / 255, then round to the nearest whole number._
 ```json
 [
    {
@@ -368,144 +401,576 @@ _Change the brightness of the light._
 ]
 ```
 - ![Image showing the output in the terminal UI of successfully changing the brightness of a room 3 times using the UI.](assets/terminal_UI/set_brightness_all_3_outputs.png)
-- 
+
 ---
 
 ### Test 7: Add New Lights
 _Add 2 new lights to the house._
-- [ ]  _Describe the goal or expected result of the test._
-- [ ]  _Step 1_
-- [ ]  _Step 2_
-- [ ]  _Step 3_
+- [ ]  In the simulator UI, Click "Add light".
+- ![Image showing a highlighted part to indicate where the "Add light" button is located on the simulator UI.](assets/simulator_UI/add_light.png)
+- [ ]  In the simulator UI, copy the json below and pasting into the "Message Body", replacing all contents.
+```json
+{
+    "name": "Bedside Lamp",
+    "room": "Guest Bedroom",
+    "on": true,
+    "brightness": 200
+}
+```
+- ![Image showing the Message Body populated with the first set of required new light JSON data.](assets/simulator_UI/add_light_message_body_populated_1.png)
+- [ ]  In the simulator UI, click "Send".
+- ![Image showing a highlighted part to indicate where the "Send" button is located on the simulator UI.](assets/simulator_UI/send_button.png)
+- [ ]  Add a second light by copy the json below and pasting into the "Message Body", replacing all contents again.
+```json
+{
+    "name": "Garage Overhead",
+    "room": "Garage",
+    "on": true,
+    "brightness": 255
+}
+```
+- ![Image showing the Message Body populated with the second set of required new light JSON data.](assets/simulator_UI/add_light_message_body_populated_2.png)
+- [ ]  In the simulator UI, click "Send" again.
+- ![Image showing a highlighted part to indicate where the "Send" button is located on the simulator UI.](assets/simulator_UI/send_button.png)
 #### EXPECTED RESULTS:
+- [ ]  Verify that the simulator reflects the two new lights. See example below.
+##### NOTE: Light ID's may vary.
+```json
+[
+  {
+    "id": "602ddcef-3f17-440a-8647-2e2bf2480ff7",
+    "name": "Bedside Lamp",
+    "room": "Guest Bedroom",
+    "on": true,
+    "brightness": 200
+  },
+  {
+    "id": "99896a76-3bb4-451e-b8e9-4cd3771c8751",
+    "name": "Garage Overhead",
+    "room": "Garage",
+    "on": true,
+    "brightness": 255
+  }
+]
+```
+- ![Image showing the output in the simulator UI of successfully adding two new lights using the UI.](assets/simulator_UI/add_light_output.png)
+- [ ]  Check that your application terminal correctly updates and displays the new state.
+```json
+[
+  {
+    "id": "602ddcef-3f17-440a-8647-2e2bf2480ff7",
+    "name": "Bedside Lamp",
+    "room": "Guest Bedroom",
+    "on": true,
+    "brightness": 200
+  },
+  {
+    "id": "99896a76-3bb4-451e-b8e9-4cd3771c8751",
+    "name": "Garage Overhead",
+    "room": "Garage",
+    "on": true,
+    "brightness": 255
+  }
+]
+```
+- ![Image showing the output in the terminal UI of successfully adding two new lights using the UI.](assets/terminal_UI/add_light_output.png)
 
 ---
 
 ### Test 8: Bulk Light Info Change 1
 _Change the name and on/off status of a light._
-- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
-- [ ]  _Step 1_
-- [ ]  _Step 2_
-- [ ]  _Step 3_
+- [ ]  In the simulator UI, Click "PUT".
+- ![Image showing a highlighted part to indicate where the "PUT" radio button is located on the simulator UI.](assets/simulator_UI/http_PUT_explicit_command.png)
+- [ ]  Paste the copied value in place of "<id>" on the URL line. See example below.
+```http request
+/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8
+```
+- ![Image of the URL line populated with "/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8".](assets/simulator_UI/URL_populated.png)
+- [ ]  In the simulator UI, copy the json below and pasting into the "Message Body", replacing all contents.
+```json
+{
+   "name": "Office Under-Shelf",
+   "on": false
+}
+```
+- ![Image showing the "Message Body" populated with the bulk json data listed above.](assets/simulator_UI/bulk_light_info_change_1.png)
+- [ ]  In the simulator UI, click "Send".
+- - ![Image showing a highlighted part to indicate where the "Send" button is located on the simulator UI.](assets/simulator_UI/send_button.png)
 #### EXPECTED RESULTS:
+- [ ]  Verify that the simulator reflects the changes to the light. See example below.
+```json
+{
+   "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+   "name": "Office Under-Shelf",
+   "room": "Office",
+   "on": false,
+   "brightness": 114
+}
+```
+- ![Image showing the output in the simulator UI of successfully changing the name and on/off status of a room using the UI.](assets/simulator_UI/bulk_light_info_change_1_output.png)
+- [ ]  Check that your application terminal correctly updates and displays the new state.
+```json
+[
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "on": false
+  },
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "name": "Office Under-Shelf"
+  }
+]
+```
+- ![Image showing the output in the terminal UI of successfully changing the name and on/off status of a room using the UI.](assets/terminal_UI/bulk_light_info_change_1_output.png)
 
 ---
 
 ### Test 9: Bulk Light Info Change 2
 _Change the name and room of a light._
-- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
-- [ ]  _Step 1_
-- [ ]  _Step 2_
-- [ ]  _Step 3_
+- [ ]  In the simulator UI, Click "PUT".
+- ![Image showing a highlighted part to indicate where the "PUT" radio button is located on the simulator UI.](assets/simulator_UI/http_PUT_explicit_command.png)
+- [ ]  Paste the copied value in place of "<id>" on the URL line. See example below.
+```http request
+/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8
+```
+- ![Image of the URL line populated with "/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8".](assets/simulator_UI/URL_populated.png)
+- [ ]  In the simulator UI, copy the json below and pasting into the "Message Body", replacing all contents.
+```json
+{
+  "name": "Chandelier",
+  "room": "Dining"
+}
+```
+- ![Image showing the "Message Body" populated with the bulk json data listed above.](assets/simulator_UI/bulk_light_info_change_2.png)
+- [ ]  In the simulator UI, click "Send".
+- - ![Image showing a highlighted part to indicate where the "Send" button is located on the simulator UI.](assets/simulator_UI/send_button.png)
 #### EXPECTED RESULTS:
+- [ ]  Verify that the simulator reflects the changes to the light. See example below.
+```json
+{
+  "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+  "name": "Chandelier",
+  "room": "Dining",
+  "on": false,
+  "brightness": 114
+}
+```
+- ![Image showing the output in the simulator UI of successfully changing the light name and room using the UI.](assets/simulator_UI/bulk_light_info_change_2_output.png)
+- [ ]  Check that your application terminal correctly updates and displays the new state.
+```json
+[
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "name": "Chandelier"
+  },
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "room": "Dining"
+  }
+]
+```
+- ![Image showing the output in the terminal UI of successfully changing the light name and room using the UI.](assets/terminal_UI/bulk_light_info_change_2_output.png)
 
 ---
 
 ### Test 10: Bulk Light Info Change 3
 _Change the name and brightness of a light._
-- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
-- [ ]  _Step 1_
-- [ ]  _Step 2_
-- [ ]  _Step 3_
+- [ ]  In the simulator UI, Click "PUT".
+- ![Image showing a highlighted part to indicate where the "PUT" radio button is located on the simulator UI.](assets/simulator_UI/http_PUT_explicit_command.png)
+- [ ]  Paste the copied value in place of "<id>" on the URL line. See example below.
+```http request
+/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8
+```
+- ![Image of the URL line populated with "/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8".](assets/simulator_UI/URL_populated.png)
+- [ ]  In the simulator UI, copy the json below and pasting into the "Message Body", replacing all contents.
+```json
+{
+   "name": "Dining Overlight",
+   "brightness": 175
+}
+```
+- ![Image showing the "Message Body" populated with the bulk json data listed above.](assets/simulator_UI/bulk_light_info_change_3.png)
+- [ ]  In the simulator UI, click "Send".
+- - ![Image showing a highlighted part to indicate where the "Send" button is located on the simulator UI.](assets/simulator_UI/send_button.png)
 #### EXPECTED RESULTS:
+- [ ]  Verify that the simulator reflects the changes to the light. See example below.
+```json
+{
+  "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+  "name": "Dining Overlight",
+  "room": "Dining",
+  "on": false,
+  "brightness": 175
+}
+```
+- ![Image showing the output in the simulator UI of successfully changing the light name and brightness using the UI.](assets/simulator_UI/bulk_light_info_change_3_output.png)
+- [ ]  Check that your application terminal correctly updates and displays the new state.
+```json
+[
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "brightness": 69
+  },
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "name": "Dining Overlight"
+  }
+]
+```
+- ![Image showing the output in the terminal UI of successfully changing the light name and brightness using the UI.](assets/terminal_UI/bulk_light_info_change_3_output.png)
 
 ---
 
 ### Test 11: Bulk Light Info Change 4
 _Change the room and on/off status of a light._
-- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
-- [ ]  _Step 1_
-- [ ]  _Step 2_
-- [ ]  _Step 3_
+- [ ]  In the simulator UI, Click "PUT".
+- ![Image showing a highlighted part to indicate where the "PUT" radio button is located on the simulator UI.](assets/simulator_UI/http_PUT_explicit_command.png)
+- [ ]  Paste the copied value in place of "<id>" on the URL line. See example below.
+```http request
+/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8
+```
+- ![Image of the URL line populated with "/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8".](assets/simulator_UI/URL_populated.png)
+- [ ]  In the simulator UI, copy the json below and pasting into the "Message Body", replacing all contents.
+```json
+{
+   "room": "Kitchen",
+   "on": true
+}
+```
+- ![Image showing the "Message Body" populated with the bulk json data listed above.](assets/simulator_UI/bulk_light_info_change_4.png)
+- [ ]  In the simulator UI, click "Send".
+- - ![Image showing a highlighted part to indicate where the "Send" button is located on the simulator UI.](assets/simulator_UI/send_button.png)
 #### EXPECTED RESULTS:
+- [ ]  Verify that the simulator reflects the changes to the light. See example below.
+```json
+{
+  "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+  "name": "Dining Overlight",
+  "room": "Kitchen",
+  "on": true,
+  "brightness": 175
+}
+```
+- ![Image showing the output in the simulator UI of successfully changing the light room and on/off status using the UI.](assets/simulator_UI/bulk_light_info_change_4_output.png)
+- [ ]  Check that your application terminal correctly updates and displays the new state.
+```json
+[
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "on": true
+  },
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "room": "Kitchen"
+  }
+]
+```
+- ![Image showing the output in the terminal UI of successfully changing the light room and on/off status using the UI.](assets/terminal_UI/bulk_light_info_change_4_output.png)
 
 ---
 
 ### Test 12: Bulk Light Info Change 5
-_Change the name and brightness status of a light._
-- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
-- [ ]  _Step 1_
-- [ ]  _Step 2_
-- [ ]  _Step 3_
+_Change the room and brightness status of a light._
+- [ ]  In the simulator UI, Click "PUT".
+- ![Image showing a highlighted part to indicate where the "PUT" radio button is located on the simulator UI.](assets/simulator_UI/http_PUT_explicit_command.png)
+- [ ]  Paste the copied value in place of "<id>" on the URL line. See example below.
+```http request
+/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8
+```
+- ![Image of the URL line populated with "/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8".](assets/simulator_UI/URL_populated.png)
+- [ ]  In the simulator UI, copy the json below and pasting into the "Message Body", replacing all contents.
+```json
+{
+   "room": "Family Dining",
+   "brightness": 225
+}
+```
+- ![Image showing the "Message Body" populated with the bulk json data listed above.](assets/simulator_UI/bulk_light_info_change_5.png)
+- [ ]  In the simulator UI, click "Send".
+- - ![Image showing a highlighted part to indicate where the "Send" button is located on the simulator UI.](assets/simulator_UI/send_button.png)
 #### EXPECTED RESULTS:
+- [ ]  Verify that the simulator reflects the changes to the light. See example below.
+```json
+{
+  "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+  "name": "Dining Overlight",
+  "room": "Family Dining",
+  "on": true,
+  "brightness": 225
+}
+```
+- ![Image showing the output in the simulator UI of successfully changing the room name and brightness using the UI.](assets/simulator_UI/bulk_light_info_change_5_output.png)
+- [ ]  Check that your application terminal correctly updates and displays the new state.
+```json
+[
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "room": "Family Dining"
+  },
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "brightness": 88
+  }
+]
+```
+- ![Image showing the output in the terminal UI of successfully changing the room name and brightness using the UI.](assets/terminal_UI/bulk_light_info_change_5_output.png)
 
 ---
 
 ### Test 13: Bulk Light Info Change 6
-_Change the on/off status and brightness of a light._
-- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
-- [ ]  _Step 1_
-- [ ]  _Step 2_
-- [ ]  _Step 3_
+_Change the name, room, and on/off status of a light._
+- [ ]  In the simulator UI, Click "PUT".
+- ![Image showing a highlighted part to indicate where the "PUT" radio button is located on the simulator UI.](assets/simulator_UI/http_PUT_explicit_command.png)
+- [ ]  Paste the copied value in place of "<id>" on the URL line. See example below.
+```http request
+/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8
+```
+- ![Image of the URL line populated with "/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8".](assets/simulator_UI/URL_populated.png)
+- [ ]  In the simulator UI, copy the json below and pasting into the "Message Body", replacing all contents.
+```json
+{
+    "name": "Wall 1 Sconces",
+    "room": "Den",
+    "on": false
+}
+```
+- ![Image showing the "Message Body" populated with the bulk json data listed above.](assets/simulator_UI/bulk_light_info_change_6.png)
+- [ ]  In the simulator UI, click "Send".
+- - ![Image showing a highlighted part to indicate where the "Send" button is located on the simulator UI.](assets/simulator_UI/send_button.png)
 #### EXPECTED RESULTS:
+- [ ]  Verify that the simulator reflects the changes to the light. See example below.
+```json
+{
+  "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+  "name": "Wall 1 Sconces",
+  "room": "Den",
+  "on": false,
+  "brightness": 225
+}
+```
+- ![Image showing the output in the simulator UI of successfully changing the light name, room name, and on/off status using the UI.](assets/simulator_UI/bulk_light_info_change_6_output.png)
+- [ ]  Check that your application terminal correctly updates and displays the new state.
+```json
+[
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "on": false
+  },
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "name": "Wall 1 Sconces"
+  },
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "room": "Den"
+  }
+]
+```
+- ![Image showing the output in the terminal UI of successfully changing the light name, room name, and on/off status using the UI.](assets/terminal_UI/bulk_light_info_change_6_output.png)
 
 ---
 
 ### Test 14: Bulk Light Info Change 7
-_Change the name, room, and on/off status of a light._
-- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
-- [ ]  _Step 1_
-- [ ]  _Step 2_
-- [ ]  _Step 3_
+_Change the name, room, and brightness of a light._
+- [ ]  In the simulator UI, Click "PUT".
+- ![Image showing a highlighted part to indicate where the "PUT" radio button is located on the simulator UI.](assets/simulator_UI/http_PUT_explicit_command.png)
+- [ ]  Paste the copied value in place of "<id>" on the URL line. See example below.
+```http request
+/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8
+```
+- ![Image of the URL line populated with "/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8".](assets/simulator_UI/URL_populated.png)
+- [ ]  In the simulator UI, copy the json below and pasting into the "Message Body", replacing all contents.
+```json
+{
+    "name": "Central Chandelier",
+    "room": "Foyer",
+    "brightness": 200
+}
+```
+- ![Image showing the "Message Body" populated with the bulk json data listed above.](assets/simulator_UI/bulk_light_info_change_7.png)
+- [ ]  In the simulator UI, click "Send".
+- - ![Image showing a highlighted part to indicate where the "Send" button is located on the simulator UI.](assets/simulator_UI/send_button.png)
 #### EXPECTED RESULTS:
+- [ ]  Verify that the simulator reflects the changes to the light. See example below.
+```json
+{
+  "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+  "name": "Central Chandelier",
+  "room": "Foyer",
+  "on": false,
+  "brightness": 200
+}
+```
+- ![Image showing the output in the simulator UI of successfully changing the light name, room name, and brightness using the UI.](assets/simulator_UI/bulk_light_info_change_7_output.png)
+- [ ]  Check that your application terminal correctly updates and displays the new state.
+```json
+[
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "name": "Central Chandelier"
+  },
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "room": "Foyer"
+  },
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "brightness": 78
+  }
+]
+```
+- ![Image showing the output in the terminal UI of successfully changing the light name, room name, and brightness using the UI.](assets/terminal_UI/bulk_light_info_change_7_output.png)
 
 ---
 
 ### Test 15: Bulk Light Info Change 8
-_Change the name, room, and brightness of a light._
-- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
-- [ ]  _Step 1_
-- [ ]  _Step 2_
-- [ ]  _Step 3_
+_Change the name, on/off status, and brightness of a light._
+- [ ]  In the simulator UI, Click "PUT".
+- ![Image showing a highlighted part to indicate where the "PUT" radio button is located on the simulator UI.](assets/simulator_UI/http_PUT_explicit_command.png)
+- [ ]  Paste the copied value in place of "<id>" on the URL line. See example below.
+```http request
+/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8
+```
+- ![Image of the URL line populated with "/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8".](assets/simulator_UI/URL_populated.png)
+- [ ]  In the simulator UI, copy the json below and pasting into the "Message Body", replacing all contents.
+```json
+{
+    "name": "Wall Sconces", 
+    "on": true, 
+    "brightness": 150
+}
+```
+- ![Image showing the "Message Body" populated with the bulk json data listed above.](assets/simulator_UI/bulk_light_info_change_8.png)
+- [ ]  In the simulator UI, click "Send".
+- - ![Image showing a highlighted part to indicate where the "Send" button is located on the simulator UI.](assets/simulator_UI/send_button.png)
 #### EXPECTED RESULTS:
+- [ ]  Verify that the simulator reflects the changes to the light. See example below.
+```json
+{
+  "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+  "name": "Wall Sconces",
+  "room": "Foyer",
+  "on": true,
+  "brightness": 150
+}
+```
+- ![Image showing the output in the simulator UI of successfully changing the name, on/off status, and brightness using the UI.](assets/simulator_UI/bulk_light_info_change_8_output.png)
+- [ ]  Check that your application terminal correctly updates and displays the new state.
+```json
+[
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "name": "Wall Sconces"
+  },
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "on": true
+  },
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "brightness": 59
+  }
+]
+```
+- ![Image showing the output in the terminal UI of successfully changing the name, on/off status, and brightness using the UI.](assets/terminal_UI/bulk_light_info_change_8_output.png)
 
 ---
 
 ### Test 16: Bulk Light Info Change 9
 _Change the name, room, on/off status, and brightness of a light._
-- [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
-- [ ]  _Step 1_
-- [ ]  _Step 2_
-- [ ]  _Step 3_
+- [ ]  In the simulator UI, Click "PUT".
+- ![Image showing a highlighted part to indicate where the "PUT" radio button is located on the simulator UI.](assets/simulator_UI/http_PUT_explicit_command.png)
+- [ ]  Paste the copied value in place of "<id>" on the URL line. See example below.
+```http request
+/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8
+```
+- ![Image of the URL line populated with "/lights/9df68fec-06ac-46bf-ab61-57e9d4e963e8".](assets/simulator_UI/URL_populated.png)
+- [ ]  In the simulator UI, copy the json below and pasting into the "Message Body", replacing all contents.
+```json
+{
+  "name": "Office Downlights",
+  "room": "Office",
+  "on": false, 
+  "brightness": 200
+}
+```
+- ![Image showing the "Message Body" populated with the bulk json data listed above.](assets/simulator_UI/bulk_light_info_change_9.png)
+- [ ]  In the simulator UI, click "Send".
+- - ![Image showing a highlighted part to indicate where the "Send" button is located on the simulator UI.](assets/simulator_UI/send_button.png)
 #### EXPECTED RESULTS:
+- [ ]  Verify that the simulator reflects the changes to the light. See example below.
+```json
+{
+  "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+  "name": "Office Downlights",
+  "room": "Office",
+  "on": false,
+  "brightness": 200
+}
+```
+- ![Image showing the output in the simulator UI of successfully changing the light name, room name, on/off status, and brightness using the UI.](assets/simulator_UI/bulk_light_info_change_9_output.png)
+- [ ]  Check that your application terminal correctly updates and displays the new state.
+```json
+[
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "name": "Office Downlights"
+  },
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "room": "Office"
+  },
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "on": false
+  },
+  {
+    "id": "9df68fec-06ac-46bf-ab61-57e9d4e963e8",
+    "brightness": 78
+  }
+]
+```
+- ![Image showing the output in the terminal UI of successfully changing the light name, room name, on/off status, and brightness using the UI.](assets/terminal_UI/bulk_light_info_change_9_output.png)
 
 ---
 
 ### Test 17: Remove a Light
 _Remove a light from the existing lights._
 - [ ]  Repeat the steps in [Obtain Lights and their states](#obtain-lights-and-their-states) to get a light ID.
-- [ ]  _Step 1_
-- [ ]  _Step 2_
-- [ ]  _Step 3_
+- [ ]  In the simulator UI, Click "Remove light".
+- ![Image showing a highlighted part to indicate where the "Remove light" button is located on the simulator UI.](assets/simulator_UI/remove_light.png)
+- [ ]  Copy and paste one of the values of the "Bedside Lamp" or "Garage Overhead" in place of "<id>" on the URL line.
+- [ ]  In the simulator UI, click "Send".
+- ![Image showing a highlighted part to indicate where the "Send" button is located on the simulator UI.](assets/simulator_UI/send_button.png)
 #### EXPECTED RESULTS:
+- [ ]  Verify that the simulator reflects the removal of the target light. See example below.
+##### NOTE: Light ID's may vary.
+- ![Image showing the output in the simulator UI of successfully removing a light using the UI.](assets/simulator_UI/remove_light_output.png)
+- [ ]  Check that your application terminal correctly updates and displays the new state.
+- ![Image showing the output in the terminal UI of successfully removing a light using the UI.](assets/terminal_UI/remove_light_output.png)
 
 ---
 
 ### Test 18: Failed Code Challenge Start 1
 _Starting the Code Challenge Application before the LightSimulator Executable and Light Simulator Browser._
-- [ ]  _Step 1_
-- [ ]  _Step 2_
-- [ ]  _Step 3_
+- [ ]  Start a build from Option 1 in [Code Challenge](#code-challenge-execution).
+- [ ]  Start a build from Option 2 in [Code Challenge](#code-challenge-execution).
 #### EXPECTED RESULTS:
 
 ---
 
 ### Test 19: Failed Code Challenge Start 2
 _Starting the Code Challenge Application with only the Light Simulator Browser running, but not the LightSimulator Executable._
-- [ ]  _Describe the goal or expected result of the test._
-- [ ]  _Step 1_
-- [ ]  _Step 2_
-- [ ]  _Step 3_
+- [ ]  Start a build from Option 1 in [Code Challenge](#code-challenge-execution).
+- [ ]  Start a build from Option 2 in [Code Challenge](#code-challenge-execution).
 #### EXPECTED RESULTS:
 
 ---
 
 ### Test 20: Failed Code Challenge Start 3
 _Starting the Code Challenge Application with only the LightSimulator Executable running, but not the Light Simulator Browser._
-- [ ]  _Describe the goal or expected result of the test._
-- [ ]  _Step 1_
-- [ ]  _Step 2_
-- [ ]  _Step 3_
+- [ ]  Start a build from Option 1 in [Code Challenge](#code-challenge-execution).
+- [ ]  Start a build from Option 2 in [Code Challenge](#code-challenge-execution).
 #### EXPECTED RESULTS:
 
 ---
@@ -530,19 +995,35 @@ _While the Code Challenge Application, LightSimulator Executable, and the Light 
 
 ---
 
-## FAQ
+**====================================================================================================================**
 
-**Q:** CLion reports “build directory not found”  
-**A:** Ensure all CMake profiles are properly configured in the settings and the corresponding directories exist.
+---
 
-**Q:** “Failed to connect to LightSimulator” error  
-**A:** Ensure LightSimulator.exe is running and you have visited http://localhost:8080 in your browser to confirm it’s active.
-
-**Q:** Application does not respond to simulator changes  
-**A:** Double-check if the browser connection to LightSimulator is established and that the simulator’s status reflects your actions.
 ## Feedback
 
 For questions or feedback, please open a GitHub issue on this repository or contact [Cory Jaramillo](https://github.com/coryjaramillo) through your GitHub profile.
+
+---
+
+**====================================================================================================================**
+
+---
+
+## Roadmap
+
+- Add Testing for when new lights are added with incomplete information:
+    - Missing Name
+    - Missing Room
+    - Missing On/Off Status
+    - Missing Brightness
+    - Missing All
+
+---
+
+**====================================================================================================================**
+
+---
+
 ## Related
 
 - [Josh.ai LightSimulator Release v1.0](https://github.com/jstarllc/JoshCodingChallenge/releases/tag/v1.0)
