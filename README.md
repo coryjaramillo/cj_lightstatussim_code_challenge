@@ -59,15 +59,15 @@ cd cj_lightstatussim_code_challenge
 2. [ ]  Add these four CMake build profiles:
 - [ ]  `Debug_Simple`
     - [ ]  `Name: Debug_Simple`
-    - [ ]  `Build type: Debug`
+    - [ ]  `Build type: Debug_Simple`
     - [ ]  `Leave all other profile settings to default`
 - [ ]  `Debug_Verbose`
     - [ ]  `Name: Debug_Verbose`
-    - [ ]  `Build type: Debug`
+    - [ ]  `Build type: Debug_Verbose`
     - [ ]  `Leave all other profile settings to default`
 - [ ]  `Debug_All`
     - [ ]  `Name: Debug_All`
-    - [ ]  `Build type: Debug`
+    - [ ]  `Build type: Debug_All`
     - [ ]  `Leave all other profile settings to default`
 - [ ]  `Release`
     - [ ]  `Name: Release`
@@ -952,46 +952,100 @@ _Remove a light from the existing lights._
 ---
 
 ### Test 18: Failed Code Challenge Start 1
-_Starting the Code Challenge Application before the LightSimulator Executable and Light Simulator Browser._
+##### _Starting the Code Challenge Application before the LightSimulator Executable and Light Simulator Browser._
+##### _Goal of this test is to show that the program will wait until at least the LightSimulator Executable has been started._
 - [ ]  Start a build from Option 1 in [Code Challenge](#code-challenge-execution).
+- [ ]  Verify for Option 1 that the output shows at least the following:
+- ![Image showing a terminal output of utilizing option 1 for CLion build run.](assets/terminal_UI/failed_code_challenge_1_option_1_run.png)
 - [ ]  Start a build from Option 2 in [Code Challenge](#code-challenge-execution).
-#### EXPECTED RESULTS:
+- [ ]  Verify for Option 2 that the output shows at least the following:
+- ![Image showing a terminal output of utilizing option 2 for terminal build run.](assets/terminal_UI/failed_code_challenge_1_option_2_run.png)
+- [ ]  Start the [Light Simulator Executable](#lightsimulator-executable-setup).
+- [ ]  Verify that the executable terminal window has opened and started with at least the following below:
+- ![Image of the initial terminal view once the light simulator executable API has been started.](assets/terminal_UI/simulator_executable_initial_start.png)
+- [ ]  Start the [Light Simulator Browser](#light-simulator-browser-setup).
+- [ ]  Verify that the browser simulator starts up correctly.
+- ![Image of the program start that shows the interface screen of the browser simulator UI.](assets/simulator_UI/successful_browser_simulator_start_screen.png)
+- [ ]  Verify that both options show the initial start output after starting the API.
+- ![Image of the program start that shows all light states upon starting the api and simulator UI.](assets/terminal_UI/get_all_light_states_application_start.png)
 
 ---
 
 ### Test 19: Failed Code Challenge Start 2
-_Starting the Code Challenge Application with only the Light Simulator Browser running, but not the LightSimulator Executable._
+##### _Starting the Code Challenge Application with only the Light Simulator Browser running, but not the LightSimulator Executable._
+##### _The goal of this test is to show that the program will wait for the API to start even if the browser interface has already been started._
+- [ ]  Start the [Light Simulator Browser](#light-simulator-browser-setup).
+- [ ] Verify the browser does not actually show the correct start screen:
+- ![Image of the program start that shows the failed started interface screen of the browser simulator UI.](assets/simulator_UI/failed_browser_simulator_start_screen.png)
 - [ ]  Start a build from Option 1 in [Code Challenge](#code-challenge-execution).
+- [ ]  Verify for Option 1 that the output shows at least the following:
+- ![Image showing a terminal output of utilizing option 1 for CLion build run.](assets/terminal_UI/failed_code_challenge_1_option_1_run.png)
 - [ ]  Start a build from Option 2 in [Code Challenge](#code-challenge-execution).
-#### EXPECTED RESULTS:
+- [ ]  Verify for Option 2 that the output shows at least the following:
+- ![Image showing a terminal output of utilizing option 2 for terminal build run.](assets/terminal_UI/failed_code_challenge_1_option_2_run.png)
+- [ ]  Start the [Light Simulator Executable](#lightsimulator-executable-setup).
+- - [ ]  Verify that the executable terminal window has opened and started with at least the following below:
+- ![Image of the initial terminal view once the light simulator executable API has been started.](assets/terminal_UI/simulator_executable_initial_start.png)
+- [ ]  Verify that both options show the initial start output after starting the API.
+- ![Image of the program start that shows all light states upon starting the api and simulator UI.](assets/terminal_UI/get_all_light_states_application_start.png)
+- [ ]  Refresh the browser to start the [Light Simulator Browser](#light-simulator-browser-setup).
+- [ ]  Verify that the browser simulator starts up correctly.
+- ![Image of the program start that shows the successfully started interface screen of the browser simulator UI.](assets/simulator_UI/successful_browser_simulator_start_screen.png)
 
 ---
 
 ### Test 20: Failed Code Challenge Start 3
-_Starting the Code Challenge Application with only the LightSimulator Executable running, but not the Light Simulator Browser._
+##### _Starting the Code Challenge Application with only the LightSimulator Executable running, but not the Light Simulator Browser._
+##### _The goal of this test is to demonstrate that the application will start if the API has been started, but that no other outputs will show after start due to the browser interface not being started._
+- [ ]  Start the [Light Simulator Executable](#lightsimulator-executable-setup).
+- [ ]  Verify that the executable terminal window has opened and started with at least the following below:
+- ![Image of the initial terminal view once the light simulator executable API has been started.](assets/terminal_UI/simulator_executable_initial_start.png)
 - [ ]  Start a build from Option 1 in [Code Challenge](#code-challenge-execution).
+- [ ]  Verify for Option 1 that the output shows at least the following:
+- ![Image showing a terminal output of utilizing option 1 for CLion build run.](assets/terminal_UI/failed_code_challenge_1_option_1_run.png)
 - [ ]  Start a build from Option 2 in [Code Challenge](#code-challenge-execution).
-#### EXPECTED RESULTS:
+- - [ ]  Verify for Option 2 that the output shows at least the following:
+- ![Image showing a terminal output of utilizing option 2 for terminal build run.](assets/terminal_UI/failed_code_challenge_1_option_2_run.png)
+- - [ ]  Verify that both options show the initial start output after starting the API.
+- ![Image of the program start that shows all light states upon starting the api and simulator UI.](assets/terminal_UI/get_all_light_states_application_start.png)
+- [ ]  Verify that the browser interface has not been started.
+- [ ]  Verify that the light simulator executable is generating non-stop GET commands similar to the image below.
+- ![Image showing a group of http 220 coded GET commands of the light API data.](assets/terminal_UI/simulator_non-stop_successful_get_commands.png)
+- [ ]  Start the [Light Simulator Browser](#light-simulator-browser-setup).
+- [ ]  Verify that the browser simulator starts up correctly.
+- ![Image of the program start that shows the successfully started interface screen of the browser simulator UI.](assets/simulator_UI/successful_browser_simulator_start_screen.png)
+- [ ]  Verify that the all terminal output have not changed.
 
 ---
 
-### Test 21: Failed Code Challenge Running 1
-_While the Code Challenge Application, LightSimulator Executable, and the Light Simulator Browser are running, then the Light Simulator Browser only is closed._
-- [ ]  _Describe the goal or expected result of the test._
-- [ ]  _Step 1_
-- [ ]  _Step 2_
-- [ ]  _Step 3_
-#### EXPECTED RESULTS:
-
----
-
-### Test 22: Failed Code Challenge Running 2
-_While the Code Challenge Application, LightSimulator Executable, and the Light Simulator Browser are running, then the LightSimulator Executable only is closed._
-- [ ]  _Describe the goal or expected result of the test._
-- [ ]  _Step 1_
-- [ ]  _Step 2_
-- [ ]  _Step 3_
-#### EXPECTED RESULTS:
+### Test 21: Failed Code Challenge Running
+##### _While the Code Challenge Application, LightSimulator Executable, and the Light Simulator Browser are running, then the LightSimulator Executable only is closed._
+##### _The goal of this test is to demonstrate that the application and the light simulator browser both go into an HTTP failed mode state until the API is restarted._
+- [ ]  Start the [Light Simulator Executable](#lightsimulator-executable-setup).
+- [ ]  Verify that the executable terminal window has opened and started with at least the following below:
+- ![Image of the initial terminal view once the light simulator executable API has been started.](assets/terminal_UI/simulator_executable_initial_start.png)
+- [ ]  Start the [Light Simulator Browser](#light-simulator-browser-setup).
+- [ ]  Verify that the browser simulator starts up correctly.
+- ![Image of the program start that shows the successfully started interface screen of the browser simulator UI.](assets/simulator_UI/successful_browser_simulator_start_screen.png)
+- [ ]  Start a build from Option 1 in [Code Challenge](#code-challenge-execution).
+- [ ]  Verify for Option 1 that the output shows at least the following:
+- ![Image showing a terminal output of utilizing option 1 for CLion build run.](assets/terminal_UI/failed_code_challenge_1_option_1_run.png)
+- [ ]  Start a build from Option 2 in [Code Challenge](#code-challenge-execution).
+- - [ ]  Verify for Option 2 that the output shows at least the following:
+- ![Image showing a terminal output of utilizing option 2 for terminal build run.](assets/terminal_UI/failed_code_challenge_1_option_2_run.png)
+- [ ]  Stop the Light Simulator Executable.
+- [ ]  Verify that there is not any terminal window open that is running the light simulator executable.
+- [ ]  Observe the browser interface and try to issue any commands on the UI.
+- ![Image of the browser UI in a failed state after the API executable has been stopped.](assets/simulator_UI/simulator_executable_closed_browser_failed_state.png)
+- [ ]  Observe the application output.
+- ![Image of the terminal interface in a failed state after the API executable has been stopped.](assets/terminal_UI/simulator_executable_closed_application_failed_state.png)
+- [ ]  Restart the [Light Simulator Executable](#lightsimulator-executable-setup).
+- [ ]  Verify that the executable terminal window has opened and started with at least the following below:
+- ![Image of the initial terminal view once the light simulator executable API has been started.](assets/terminal_UI/simulator_executable_initial_start.png)
+- [ ]  Observe the browser interface and issue any new commands on the UI.
+- ![Image of the browser UI in a restored state after the API executable has been restarted.](assets/simulator_UI/simulator_executable_restarted_browser_restored.png)
+- [ ]  Observe the application output and any new light state changes from commands issued in the browser UI.
+- ![Image of the terminal interface in a restored state after the API executable has been restarted.](assets/terminal_UI/simulator_executable_restarted_application_restored.png)
 
 ---
 
