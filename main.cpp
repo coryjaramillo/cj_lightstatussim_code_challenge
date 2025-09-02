@@ -29,6 +29,11 @@ int main() {
 
     // Construct the Home Lights, get the initial light data, and display it
     HomeLights homeLights(currentHost, currentPort);
+
+    while(!homeLights.isConnectionValid()){
+        std::cout << "Waiting for API to be started..." << std::endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    }
     homeLights.captureLightData();
     homeLights.displayAllLights();
 
