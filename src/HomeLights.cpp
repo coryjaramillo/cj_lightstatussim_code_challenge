@@ -25,7 +25,16 @@ bool HomeLights::isConnectionValid() {
 
     bool returnState = false;
     try {
-        returnState = client.is_valid() and server.is_valid();
+        auto clientRes = client.Get("/");
+
+        if (!clientRes) {
+            std::cout << "Client initialization failed..." << std::endl;
+        }
+
+        returnState = clientRes and (clientRes->status == 200);
+#ifdef DEBUG_BUILD_VERBOSE
+        std::cout << "Return State: " << std::boolalpha << returnState << std::noboolalpha << std::endl;
+#endif
     }
     catch (const std::exception& ex) {
         std::cerr << "Standard Exception: " << ex.what() << std::endl;
@@ -211,7 +220,7 @@ nlohmann::json HomeLights::queryLightsAPI(const std::string &query) {
         std::cerr << "Standard Exception: " << ex.what() << std::endl;
     }
     catch (...) {
-        std::cerr << "An unknown exception occurred while trying to check if the client and server are both valid!" << std::endl;
+        std::cerr << "An unknown exception occurred while trying to check if the client are both valid!" << std::endl;
     }
 
     return returnResult;
