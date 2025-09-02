@@ -41,6 +41,7 @@ endif()
 if(CLION_FOUND)
     message(STATUS "CLion IDE detected...")
     set(MINGW_BIN_PATH "${CLION_PATH}/mingw/bin/")
+    message("CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
 
     if(CMAKE_BUILD_TYPE STREQUAL "Debug_Simple")
         add_definitions(-DDEBUG_BUILD_SIMPLE)
